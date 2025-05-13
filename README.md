@@ -1,4 +1,4 @@
-# GMTK 2025 Pre-Jam
+# Loop Mechanic (GMTK 2025 Pre-Jam)
 * When: Monday May 12th - Sunday May 18th
 * Engine: Godot 4.4.1-stable
 
@@ -155,4 +155,20 @@ Arena could be different for each boss?
 	[ ] Pressure plate that activates when boss walks over to generate power to nearby robots
 	[ ] Warddrobe (steampunk version?) that you can hide in and it uses power
 	[ ] Hammer robot that swings and knocks the boss forward/backward based on direction (need to reset while boss is not there in order to avoid speeding up the boss)
+	[ ] 
+	
+# Sound Effect List
+	[ ] Running Robot Loop
+	[ ] Cranking battery
+	[ ] Boss attack (roar)
+	[ ] Boss getting hurt (grunt)
+	[ ] Boss steps sound
+	[ ] Dart machine attacks
+	[ ] Pressure Plate Press/Release
+	[ ] Bomb exploding
+	[ ] Flamethrower sound (loop)
+	[?] Open/Close GUI
+	[ ] Main Menu Music
+	[ ] Gameplay music/ambience
+	[ ] Click effect
 	[ ] 

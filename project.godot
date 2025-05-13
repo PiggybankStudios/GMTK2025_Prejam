@@ -10,9 +10,13 @@ config_version=5
 
 [application]
 
-config/name="GMTK2025_Prejam"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/name="Loop Mechanic"
+config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="GMTK2025_Prejam"
 
 [rendering]
 
