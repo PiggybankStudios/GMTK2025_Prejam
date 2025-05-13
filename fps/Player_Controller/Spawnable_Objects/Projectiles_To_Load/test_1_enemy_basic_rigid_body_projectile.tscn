@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://rqc7rjhe4mof"]
-
-[ext_resource type="Script" uid="uid://ccrqwdbkacvqs" path="res://fps/Player_Controller/scripts/Projectiles/Enemy_Projectile.gd" id="1_s6tjm"]
-[ext_resource type="PackedScene" path="res://Enemies/Spawnable Objects/enemy_bullet.tscn" id="2_mt8wd"]
-
-[node name="Projectile" type="Node3D"]
-script = ExtResource("1_s6tjm")
-Rigid_Body_Projectile = ExtResource("2_mt8wd")
