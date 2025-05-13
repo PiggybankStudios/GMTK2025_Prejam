@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw5v4p2tttlre"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1np5d"]
+
+[node name="MeshInstance3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00814915, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_1np5d")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.35749)
+mesh = SubResource("BoxMesh_1np5d")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42384, 0, 0)
+mesh = SubResource("BoxMesh_1np5d")
