@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://o8mxghs5c3ed"]
+
+[ext_resource type="PackedScene" uid="uid://dxlkgbr1p580" path="res://Player_Controller/Spawnable_Objects/bullet.tscn" id="1_mmeqj"]
+[ext_resource type="Material" uid="uid://0qakvl0g6c71" path="res://Art/Models/Textures/prototype texture/Orange/material_01.tres" id="2_ujq0m"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k6ana"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8bl1o"]
+material = ExtResource("2_ujq0m")
+
+[node name="enemy_bullet" instance=ExtResource("1_mmeqj")]
+collision_layer = 48
+collision_mask = 7
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("SphereShape3D_k6ana")
+
+[node name="foamBulletA2" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("SphereMesh_8bl1o")
