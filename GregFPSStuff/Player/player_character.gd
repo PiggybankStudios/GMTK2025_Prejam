@@ -88,11 +88,11 @@ func _input(event):
 		var MouseEvent = event.relative * MouseSensitivity
 		CameraLook(MouseEvent)
 		
-	#if event.is_action_pressed("crouch"):
-		#Crouch()
-	#if event.is_action_released("crouch"):
-		#if !Crouch_Toggle and Crouched:
-			#Crouch()
+	if event.is_action_pressed("crouch"):
+		Crouch()
+	if event.is_action_released("crouch"):
+		if !Crouch_Toggle and Crouched:
+			Crouch()
 	
 		
 	#if Input.is_action_just_released("lean_left") or Input.is_action_just_released("lean_right"):
@@ -214,21 +214,18 @@ func _physics_process(delta):
 			velocity.y -= Jump_Gravity * delta
 		else:
 			velocity.y -= Fall_Gravity * delta
-	else:
-		Jump_Available = true
-		coyote_timer.stop()
-		_speed = (Speed / max((float(Crouched)*Crouch_Speed_Reduction),1)) * Speed_Modifier
-		if Jump_Buffer:
-			Jump()
-			Jump_Buffer = false
+	#else:
+		#Jump_Available = true
+		#coyote_timer.stop()
+		#_speed = (Speed / max((float(Crouched)*Crouch_Speed_Reduction),1)) * Speed_Modifier
+		#if Jump_Buffer:
+			#Jump()
+			#Jump_Buffer = false
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept"):
-		if Jump_Available:
-			if Crouched:
-				Crouch()
-			else:
-				#lean(CENTRE)
-				Jump()
+		#if Jump_Available:
+		if Crouched:
+			Crouch()
 		else:
 			Jump_Buffer = true
 			get_tree().create_timer(Jump_Buffer_Time).timeout.connect(on_jump_buffer_timeout)
