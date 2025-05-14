@@ -88,11 +88,11 @@ func _input(event):
 		var MouseEvent = event.relative * MouseSensitivity
 		CameraLook(MouseEvent)
 		
-	if event.is_action_pressed("crouch"):
-		Crouch()
-	if event.is_action_released("crouch"):
-		if !Crouch_Toggle and Crouched:
-			Crouch()
+	#if event.is_action_pressed("crouch"):
+		#Crouch()
+	#if event.is_action_released("crouch"):
+		#if !Crouch_Toggle and Crouched:
+			#Crouch()
 	
 		
 	#if Input.is_action_just_released("lean_left") or Input.is_action_just_released("lean_right"):

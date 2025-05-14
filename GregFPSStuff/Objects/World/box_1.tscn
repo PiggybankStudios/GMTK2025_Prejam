@@ -1,13 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://bwc28g513sfim"]
+[gd_scene load_steps=6 format=4 uid="uid://bwc28g513sfim"]
 
-[ext_resource type="Script" uid="uid://cdu72xwe2ygg3" path="res://Objects/physic_objects/targetable_objects.gd" id="1_kuesi"]
-[ext_resource type="Texture2D" uid="uid://dxsynf14s3j6x" path="res://Art/Models/Boxes/cardboard_box1_Box_21-256x256.png" id="1_pdymq"]
+[ext_resource type="Script" uid="uid://dd7hmujlyrvt0" path="res://GregFPSStuff/Objects/targetable_objects.gd" id="1_3vrlj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gawj1"]
 resource_name = "Material"
 cull_mode = 2
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("1_pdymq")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_iaqc5"]
@@ -48,7 +46,7 @@ points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 
 [node name="box1" type="RigidBody3D" groups=["Target"]]
 collision_layer = 4
 collision_mask = 23
-script = ExtResource("1_kuesi")
+script = ExtResource("1_3vrlj")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_kswle")
