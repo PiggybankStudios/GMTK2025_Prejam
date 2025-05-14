@@ -1,0 +1,54 @@
+[gd_scene load_steps=14 format=3 uid="uid://nnohrop64gvc"]
+
+[ext_resource type="Script" uid="uid://cuixftv7hii4i" path="res://Scripts_Sean/space_main.gd" id="1_46eog"]
+[ext_resource type="PackedScene" uid="uid://bnq6lnsdoxdak" path="res://Prefabs/prefab_SphereBlob.tscn" id="1_h1ge5"]
+[ext_resource type="PackedScene" uid="uid://brw7m1tqxsoje" path="res://Prefabs/level_manager.tscn" id="2_vuo64"]
+[ext_resource type="PackedScene" uid="uid://c3g44g8t5o17" path="res://Prefabs/test_level_block_tunnel.tscn" id="3_k0xya"]
+[ext_resource type="Image" uid="uid://l118glcsjb0q" path="res://MapImages/map_demo_1.png" id="3_v2epd"]
+[ext_resource type="PackedScene" uid="uid://caoyhdtwa4fvn" path="res://Prefabs/test_level_block_corner.tscn" id="4_2w8be"]
+[ext_resource type="Image" uid="uid://dl4nhem1vhhb0" path="res://MapImages/map_demo_2.png" id="4_4npdx"]
+[ext_resource type="Image" uid="uid://kgj8dixer63m" path="res://MapImages/map_demo_3.png" id="5_rd61s"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vuo64"]
+
+[sub_resource type="Sky" id="Sky_vuo64"]
+sky_material = SubResource("PanoramaSkyMaterial_vuo64")
+
+[sub_resource type="Environment" id="Environment_k0xya"]
+background_mode = 2
+sky = SubResource("Sky_vuo64")
+ambient_light_color = Color(0.548237, 0.675955, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vuo64"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k0xya"]
+albedo_color = Color(0.303233, 0.303233, 0.303233, 1)
+
+[node name="MainScene_Root" type="Node3D"]
+script = ExtResource("1_46eog")
+
+[node name="level_manager" parent="." instance=ExtResource("2_vuo64")]
+grid_count = 12
+map_image_paths = Array[Image]([ExtResource("3_v2epd"), ExtResource("4_4npdx"), ExtResource("5_rd61s")])
+block_list_straight = Array[PackedScene]([ExtResource("3_k0xya")])
+block_list_corner = Array[PackedScene]([ExtResource("4_2w8be")])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k0xya")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.683605, 0.506044, -0.525931, 0, 0.720599, 0.693352, 0.729852, -0.473979, 0.492605, 12.0178, 21.2338, 60.207)
+size = 80.0
+
+[node name="TestBlob" parent="." instance=ExtResource("1_h1ge5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.942529, 0)
+visible = false
+
+[node name="TestFloor" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+visible = false
+mesh = SubResource("PlaneMesh_vuo64")
+surface_material_override/0 = SubResource("StandardMaterial3D_k0xya")

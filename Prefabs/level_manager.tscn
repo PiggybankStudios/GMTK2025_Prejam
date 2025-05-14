@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://brw7m1tqxsoje"]
+
+[ext_resource type="Script" uid="uid://cpt8t06a28srs" path="res://Scripts_Sean/Level_Manager.gd" id="1_kut37"]
+
+[node name="level_manager" type="Node3D"]
+script = ExtResource("1_kut37")
+metadata/_edit_group_ = true

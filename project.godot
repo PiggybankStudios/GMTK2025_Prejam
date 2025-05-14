@@ -11,12 +11,21 @@ config_version=5
 [application]
 
 config/name="Loop Mechanic"
+run/main_scene="uid://nnohrop64gvc"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Draw3d="*res://Scripts_Sean/Draw3D.gd"
 
 [dotnet]
 
 project/assembly_name="GMTK2025_Prejam"
+
+[filesystem]
+
+import/blender/enabled=false
 
 [rendering]
 
