@@ -164,7 +164,10 @@ func generate_block(grid_x: int, grid_z: int, space: int, map_index: int):
 			add_child(new_block)
 			
 			if space == SpaceType.RED:
-				player_spawn_position = Vector3(x_position, PLAYER_SPAWN_HEIGHT, z_position)
+				player_spawn_position = new_block.get_player_spawn_position()
+				##print("player spawn position: ", player_spawn_position)
+				##player_spawn_position = new_block.level_block.get_player_spawn_position()				
+				##player_spawn_position = Vector3(x_position, PLAYER_SPAWN_HEIGHT, z_position)
 				
 	else:
 		push_error(str("Pixel not recognized in map image: ", map_index, " - pixel score: ", space, " - position: ", grid_x, ", ", grid_z))
@@ -186,6 +189,7 @@ func get_pixel_score(pixel_value: Color):
 	return pixel_value[0] + pixel_value[1] + pixel_value[2] + pixel_value[3]
 
 
+
 ##----------------------------------------------
 ##               Asset Placement               |
 ##----------------------------------------------
@@ -197,6 +201,7 @@ func spawn_player_character(player: PackedScene):
 	newPlayer.name = "Player_Character"
 	add_child(newPlayer)
 	pass
+
 
 
 ##----------------------------------------------
