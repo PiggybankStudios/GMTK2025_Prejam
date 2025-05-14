@@ -42,6 +42,10 @@ enum SpaceType {
 }
 var space_type := SpaceType
 
+var player_spawn_position = Vector3.ZERO
+const PLAYER_SPAWN_HEIGHT = 10
+
+
 ## --- RNG ---
 
 var rng = RandomNumberGenerator.new()
@@ -52,14 +56,15 @@ var rng = RandomNumberGenerator.new()
 ##              Level Generation               |
 ##----------------------------------------------
 
-## Creates the level by placing blocks in a loop on a grid.
-func create_level() -> void:
+## Creates the level by placing blocks in a loop on a grid, and instatiates the Player Character at that level's spawn point.
+func create_level(player: PackedScene) -> void:
 	
 	if block_list_straight.size() < 1 or block_list_corner.size() < 1:
 		push_error("Level_Manager's block_list_straight or block_list_corner is empty - cannot generate level.")
 	else:
 		var map_index = randi_range(0, map_image_paths.size()-1)
 		generate_blocks_from_map_image(map_index)
+		spawn_player_character(player)
 	pass
 
 
@@ -156,6 +161,9 @@ func generate_block(grid_x: int, grid_z: int, space: int, map_index: int):
 			var z_position = (grid_z * grid_scale) + grid_scale_half
 			new_block.position = Vector3(x_position, 0,z_position)
 			add_child(new_block)
+			
+			if space == SpaceType.RED:
+				player_spawn_position = Vector3(x_position, PLAYER_SPAWN_HEIGHT, z_position)
 				
 	else:
 		push_error(str("Pixel not recognized in map image: ", map_index, " - pixel score: ", space, " - position: ", grid_x, ", ", grid_z))
@@ -176,6 +184,18 @@ func get_level_block_neighbors(grid_x: int, grid_z: int, map_index: int):
 func get_pixel_score(pixel_value: Color):
 	return pixel_value[0] + pixel_value[1] + pixel_value[2] + pixel_value[3]
 
+
+##----------------------------------------------
+##               Asset Placement               |
+##----------------------------------------------
+
+## Instantiates a player character controller 
+func spawn_player_character(player: PackedScene):
+	var newPlayer = player.instantiate()
+	newPlayer.position = player_spawn_position
+	newPlayer.name = "Player_Character"
+	add_child(newPlayer)
+	pass
 
 
 ##----------------------------------------------

@@ -11,7 +11,7 @@
 [node name="root" type="Node3D"]
 
 [node name="floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(6, 0, 0, 0, 0.1, 0, 0, 0, 6, 0, 0, 0)
+transform = Transform3D(50, 0, 0, 0, 0.1, 0, 0, 0, 50, 0, 0, 0)
 mesh = SubResource("BoxMesh_g11ig")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="floor"]
@@ -20,7 +20,7 @@ mesh = SubResource("BoxMesh_g11ig")
 shape = SubResource("BoxShape3D_6l8jy")
 
 [node name="wall_1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 6, -2.5, 0.5, 0)
+transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 50, -23, 5, 0)
 mesh = SubResource("BoxMesh_g11ig")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall_1"]
@@ -29,7 +29,7 @@ mesh = SubResource("BoxMesh_g11ig")
 shape = SubResource("BoxShape3D_6l8jy")
 
 [node name="wall_2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 5, 0, 1, 0, -1, 0, -2.18557e-07, 0.5, 0.5, -2.5)
+transform = Transform3D(-1.74846e-07, 0, 46, 0, 10, 0, -4, 0, -2.01072e-06, 2, 5, -23)
 mesh = SubResource("BoxMesh_g11ig")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall_2"]
@@ -38,7 +38,7 @@ mesh = SubResource("BoxMesh_g11ig")
 shape = SubResource("BoxShape3D_6l8jy")
 
 [node name="wall_3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, 2.5)
+transform = Transform3D(4, 0, 0, 0, 10, 0, 0, 0, 4, 23, 5, 23)
 mesh = SubResource("BoxMesh_o1nds")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall_3"]
