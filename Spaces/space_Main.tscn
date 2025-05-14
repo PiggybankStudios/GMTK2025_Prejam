@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bnq6lnsdoxdak" path="res://Prefabs/prefab_SphereBlob.tscn" id="1_h1ge5"]
 [ext_resource type="PackedScene" uid="uid://oc13h3au02ro" path="res://GregFPSStuff/Player/player_character.tscn" id="2_11m3c"]
 [ext_resource type="PackedScene" uid="uid://brw7m1tqxsoje" path="res://Prefabs/level_manager.tscn" id="2_vuo64"]
-[ext_resource type="PackedScene" uid="uid://c3g44g8t5o17" path="res://Prefabs/test_level_block_tunnel.tscn" id="3_k0xya"]
 [ext_resource type="Image" uid="uid://l118glcsjb0q" path="res://MapImages/map_demo_1.png" id="3_v2epd"]
-[ext_resource type="PackedScene" uid="uid://caoyhdtwa4fvn" path="res://Prefabs/test_level_block_corner.tscn" id="4_2w8be"]
 [ext_resource type="Image" uid="uid://dl4nhem1vhhb0" path="res://MapImages/map_demo_2.png" id="4_4npdx"]
 [ext_resource type="Image" uid="uid://kgj8dixer63m" path="res://MapImages/map_demo_3.png" id="5_rd61s"]
+[ext_resource type="PackedScene" uid="uid://c3eo8hmmu25wy" path="res://Prefabs/Level_Blocks_scale20/test_level_block_tunnel_20.tscn" id="7_11m3c"]
+[ext_resource type="PackedScene" uid="uid://cjaprvhtkffec" path="res://Prefabs/Level_Blocks_scale20/test_level_block_corner_20.tscn" id="8_lv2ab"]
 [ext_resource type="PackedScene" uid="uid://dlcvyrkwatdnb" path="res://Prefabs/world_environment_2.tscn" id="8_rd61s"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vuo64"]
@@ -21,11 +21,12 @@ script = ExtResource("1_46eog")
 playerCharacter = ExtResource("2_11m3c")
 
 [node name="level_manager" parent="." instance=ExtResource("2_vuo64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00326061, 0.134422, 0.082962)
 grid_count = 12
-grid_scale = 50
+grid_scale = 20
 map_image_paths = Array[Image]([ExtResource("3_v2epd"), ExtResource("4_4npdx"), ExtResource("5_rd61s")])
-block_list_straight = Array[PackedScene]([ExtResource("3_k0xya")])
-block_list_corner = Array[PackedScene]([ExtResource("4_2w8be")])
+block_list_straight = Array[PackedScene]([ExtResource("7_11m3c")])
+block_list_corner = Array[PackedScene]([ExtResource("8_lv2ab")])
 
 [node name="WorldEnvironment2" parent="." instance=ExtResource("8_rd61s")]
 

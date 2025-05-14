@@ -63,6 +63,7 @@ func create_level(player: PackedScene) -> void:
 		push_error("Level_Manager's block_list_straight or block_list_corner is empty - cannot generate level.")
 	else:
 		var map_index = randi_range(0, map_image_paths.size()-1)
+		print("Map Selected: ", map_index)
 		generate_blocks_from_map_image(map_index)
 		spawn_player_character(player)
 	pass
@@ -247,6 +248,4 @@ func draw_grid() -> void:
 		line_end_position = Vector3(grid_count * grid_scale, 0, line_z)
 		Draw3d.line(line_start_position, line_end_position)
 
-
-	print("A grid has been drawn!!")
 	pass
