@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc8iqb6efwbsk"]
+
+[ext_resource type="PackedScene" uid="uid://dxlkgbr1p580" path="res://GregFPSStuff/Objects/Spawnable_Objects/bullet.tscn" id="1_hlhe2"]
+[ext_resource type="Script" path="res://bullet_self_moving.gd" id="2_3vltl"]
+
+[node name="bullet_self_moving" instance=ExtResource("1_hlhe2")]
+script = ExtResource("2_3vltl")
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(2.19, 0, 0, 0, -9.57279e-08, -2.19, 0, 2.19, -9.57279e-08, 0, 0, 0)
+
+[node name="foamBulletA2" parent="." index="1"]
+transform = Transform3D(12.24, 0, 0, 0, -5.35027e-07, -12.24, 0, 12.24, -5.35027e-07, 0, 0, 0)

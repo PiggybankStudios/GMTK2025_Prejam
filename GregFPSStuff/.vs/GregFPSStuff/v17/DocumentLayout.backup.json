@@ -22,12 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 315,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -38,7 +34,8 @@
               "RelativeToolTip": "Player\\CameraMousePointing.gd",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-13T22:01:40.52Z"
+              "WhenOpened": "2025-05-13T22:01:40.52Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -50,7 +47,8 @@
               "RelativeToolTip": "Player\\HUD.gd",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-13T22:01:38.656Z"
+              "WhenOpened": "2025-05-13T22:01:38.656Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bansj4618nnx1"]
+
+[ext_resource type="PackedScene" uid="uid://brvfyahytwd8m" path="res://GregFPSStuff/Objects/Spawnable_Objects/Projectiles_To_Load/shotgun_projectile.tscn" id="1_gt50o"]
+[ext_resource type="PackedScene" uid="uid://dxlkgbr1p580" path="res://GregFPSStuff/Objects/Spawnable_Objects/bullet.tscn" id="2_e3af8"]
+
+[node name="dual_rigidbody_projectile" instance=ExtResource("1_gt50o")]
+Split_Damage = false
+Projectile_Type = "Rigidbody_Projectile"
+Projectile_Velocity = 50
+Rigid_Body_Projectile = ExtResource("2_e3af8")
+metadata/_edit_vertical_guides_ = [-18.0, 18.0]
+
+[node name="shotgun_pattern" parent="." index="0"]
+position = Vector2(-3, -1)

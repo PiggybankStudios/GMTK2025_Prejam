@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq2i1rh241oy0"]
+
+[ext_resource type="Script" path="res://Player_Controller/scripts/Projectiles/Projectile.gd" id="1_uasyv"]
+[ext_resource type="PackedScene" uid="uid://cc8iqb6efwbsk" path="res://GregFPSStuff/Objects/Spawnable_Objects/bullet_self_moving.tscn" id="2_ua6s2"]
+
+[node name="Projectile" type="Node3D"]
+script = ExtResource("1_uasyv")
+Projectile_Type = "Rigidbody_Projectile"
+Projectile_Velocity = 50
+Rigid_Body_Projectile = ExtResource("2_ua6s2")
