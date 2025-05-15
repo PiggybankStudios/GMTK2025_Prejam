@@ -22,7 +22,7 @@ func _ready() -> void:
 func _Set_Projectile(_Damage: int = 0,_spread:Vector2 = Vector2.ZERO, _Range: float = 1000, _source: Node3D = null):
 	print("Setting Projectile")
 	Damage = _Damage
-	global_transform.origin = _source.global_transform.origin
+	# global_transform.origin = _source.global_transform.origin
 	# transform.origin = _source.transform.origin
 	#transform.basis = _source.transform.basis
 	# rotation.z = deg_to_rad(_source.transform.basis.get_euler().z)

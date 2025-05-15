@@ -11,4 +11,4 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# move the bullet forwards
-	global_position += -global_transform.basis.z * speed * delta
+	global_position += global_transform.basis.z * speed * delta

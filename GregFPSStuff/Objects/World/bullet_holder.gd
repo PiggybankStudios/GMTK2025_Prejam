@@ -19,10 +19,10 @@ var Projectile_Direction: Vector3 = Vector3.ZERO
 func _ready() -> void:
 	get_tree().create_timer(Expirey_Time).timeout.connect(_on_timer_timeout)
 
-func _Set_Projectile(_Damage: int = 0,_spread:Vector2 = Vector2.ZERO, _Range: float = 1000, _source: Node3D = null):
+func _Set_Projectile(_proj: PackedScene,_Damage: int = 0,_spread:Vector2 = Vector2.ZERO, _Range: float = 1000, _source: Node3D = null):
 	print("Setting Projectile")
 	Damage = _Damage
-	global_transform.origin = _source.global_transform.origin
+	# global_transform.origin = _source.global_transform.origin
 	# transform.origin = _source.transform.origin
 	#transform.basis = _source.transform.basis
 	# rotation.z = deg_to_rad(_source.transform.basis.get_euler().z)
@@ -30,7 +30,8 @@ func _Set_Projectile(_Damage: int = 0,_spread:Vector2 = Vector2.ZERO, _Range: fl
 	# rotate(_source.transform.basis.z, deg_to_rad(_source.transform.basis.get_euler().z))
 	# Launch_Projectile(_source.position, Rigid_Body_Projectile)
 	#Fire_Projectile(_Damage,_Range,_source)
-	Fire_Projectile(_spread,_Range, Rigid_Body_Projectile, _source)
+	Launch_Rigid_Body_Bullet(_source.transform.origin,_proj)
+	# Fire_Projectile(_spread,_Range, Rigid_Body_Projectile, _source)
 
 func Fire_Projectile(_damage,_range, _proj, _source: Node3D = null):
 	#var Shooter_Collision = Shooter_Ray_Cast(_source, _range)
@@ -68,10 +69,10 @@ func Launch_Projectile(_projectile):
 	_proj.set_linear_velocity(global_transform.basis.z *Projectile_Velocity)
 	
 func Launch_Rigid_Body_Projectile(_Point: Vector3, _projectile):
-	print("Launching Projectile " + str(Projectiles_Spawned.size()))
+	print("Launching Projectile from holder" + str(Projectiles_Spawned.size()))
 	var _proj = _projectile.instantiate()
 	add_child(_proj)
-	_proj.global_transform.origin = _Point
+	# _proj.global_transform.origin = _Point
 	Projectiles_Spawned.push_back(_proj)
 
 	_proj.body_entered.connect(_on_body_entered.bind(_proj))
@@ -79,6 +80,23 @@ func Launch_Rigid_Body_Projectile(_Point: Vector3, _projectile):
 	var _Direction = (_Point - global_transform.origin).normalized()
 	if !Fire_Towards_Camera:
 		_Direction = Vector3.FORWARD
+	_proj.set_as_top_level(true)
+	_proj.set_linear_velocity(_Direction*Projectile_Velocity)
+	Projectile_Direction = _Direction
+
+func Launch_Rigid_Body_Bullet(_Point: Vector3, _projectile:PackedScene):
+	print("Launching Projectile from holder" + str(Projectiles_Spawned.size()))
+	var _proj = _projectile.instantiate()
+	add_child(_proj)
+	# _proj.global_transform.origin = _Point
+	Projectiles_Spawned.push_back(_proj)
+
+	_proj.body_entered.connect(_on_body_entered.bind(_proj))
+	
+	var _Direction = (_Point - global_transform.origin).normalized()
+	if !Fire_Towards_Camera:
+		_Direction = Vector3.FORWARD
+	
 	_proj.set_as_top_level(true)
 	_proj.set_linear_velocity(_Direction*Projectile_Velocity)
 	Projectile_Direction = _Direction
@@ -122,7 +140,7 @@ func Hit_Scan_Damage(Collider, Direction, Position, _damage):
 	if Collider.is_in_group("Target") and Collider.has_method("Hit_Successful"):
 		Hit_Successful.emit()
 		Collider.Hit_Successful(_damage, Direction, Position)
-		queue_free()
+		#queue_free()
 
 func Load_Decal(_pos):
 	if Display_Debug_Decal:
@@ -137,15 +155,15 @@ func _on_body_entered(body, _proj):
 		body.Hit_Successful(Damage)
 		Hit_Successful.emit()
 		print ("HitScan Successful")
-
-
+		
 	Load_Decal(_proj.get_position())
 	_proj.queue_free()
 		
-	Projectiles_Spawned.erase(_proj)
-	
-	if Projectiles_Spawned.is_empty():
-		queue_free()
+	#Projectiles_Spawned.erase(_proj)
+	#
+	#if Projectiles_Spawned.is_empty():
+		#queue_free()
 
 func _on_timer_timeout():
-	queue_free()
+	pass
+	#queue_free()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cc8iqb6efwbsk"]
 
 [ext_resource type="PackedScene" uid="uid://dxlkgbr1p580" path="res://GregFPSStuff/Objects/Spawnable_Objects/bullet.tscn" id="1_hlhe2"]
-[ext_resource type="Script" path="res://bullet_self_moving.gd" id="2_3vltl"]
+[ext_resource type="Script" uid="uid://yw5le3kn7wsa" path="res://GregFPSStuff/bullet_self_moving.gd" id="2_3vltl"]
 
 [node name="bullet_self_moving" instance=ExtResource("1_hlhe2")]
 script = ExtResource("2_3vltl")

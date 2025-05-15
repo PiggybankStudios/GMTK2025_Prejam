@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://bpp6ljv0x8gau"]
+[gd_scene load_steps=18 format=4 uid="uid://bpp6ljv0x8gau"]
 
 [ext_resource type="Script" uid="uid://bkeo7limgy77k" path="res://GregFPSStuff/Enemies/enemy_character.gd" id="1_hd3lw"]
 [ext_resource type="PackedScene" uid="uid://o8mxghs5c3ed" path="res://GregFPSStuff/Enemies/Spawnable Objects/enemy_bullet.tscn" id="2_8jih4"]
 [ext_resource type="Script" uid="uid://b3gwvrtct3e4i" path="res://GregFPSStuff/Enemies/enemy_attack.gd" id="3_v47nc"]
 [ext_resource type="PackedScene" uid="uid://0leatwuwt1cd" path="res://GregFPSStuff/Objects/Spawnable_Objects/Projectiles_To_Load/enemy_basic_rigid_body_projectile.tscn" id="4_e1mgd"]
 [ext_resource type="Script" uid="uid://bkyu87hcr1c3l" path="res://GregFPSStuff/Enemies/KnockbackManager.gd" id="5_thpy5"]
+[ext_resource type="PackedScene" uid="uid://cc8iqb6efwbsk" path="res://GregFPSStuff/Objects/Spawnable_Objects/bullet_self_moving.tscn" id="5_x7sjw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yxmpu"]
 
@@ -194,6 +195,7 @@ mesh = SubResource("BoxMesh_gim68")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.755631)
 script = ExtResource("3_v47nc")
 projectile_to_load = ExtResource("4_e1mgd")
+bullet_to_load = ExtResource("5_x7sjw")
 metadata/enemy_shooter = false
 
 [node name="AttackTimer" type="Timer" parent="Enemy_Attack_Holder"]

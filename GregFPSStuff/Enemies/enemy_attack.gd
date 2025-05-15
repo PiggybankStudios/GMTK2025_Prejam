@@ -23,13 +23,14 @@ func _on_timer_timeout():
 
 func Load_Projectile():
 	print("Loading Projectile")
-	var _projectile:Enemy_Projectile = projectile_to_load.instantiate()
-	Bullet_Point.add_child(_projectile)
-	_projectile.global_transform.origin = Bullet_Point.global_transform.origin
+	var _bullet  = bullet_to_load.instantiate()
+	# var _projectile:Enemy_Projectile  = projectile_to_load.instantiate()
+	Bullet_Point.add_child(_bullet)
+	_bullet.set_global_transform(Bullet_Point.global_transform)
 	#_projectile.rotate(Vector3.UP,deg_to_rad(Bullet_Point.transform.rotation))
 	#_projectile.body_entered.connect(_on_detection_area_body_entered.bind(_projectile))
 	if Bullet_Holder != null:
-		Bullet_Holder._Set_Projectile(damage,spread,range,Bullet_Point)
+		Bullet_Holder._Set_Projectile(bullet_to_load,damage,spread,range,Bullet_Point)
 
 	
 	#Add_Signal_To_HUD.emit(_projectile)
