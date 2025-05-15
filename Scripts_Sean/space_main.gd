@@ -7,6 +7,10 @@ extends Node3D
 ## Player controller is instantiated during runtime, always at spawn point on level_manager.
 @export var playerCharacter := PackedScene
 
+## Boss Monster is instantiated during runtime, always at boss spawn point on level_manager.
+@export var bossMonster := PackedScene
+
+
 
 func _ready() -> void:
 	
