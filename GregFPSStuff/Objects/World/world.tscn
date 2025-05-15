@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dniyrkkdwf3cb"]
+[gd_scene load_steps=10 format=3 uid="uid://dniyrkkdwf3cb"]
 
 [ext_resource type="PackedScene" uid="uid://bwc28g513sfim" path="res://GregFPSStuff/Objects/World/box_1.tscn" id="2_a2qm0"]
 [ext_resource type="PackedScene" uid="uid://bpp6ljv0x8gau" path="res://GregFPSStuff/Enemies/proj_turret_static.tscn" id="4_rdldg"]
+[ext_resource type="Script" uid="uid://r52rx7sts622" path="res://GregFPSStuff/Objects/World/bullet_holder.gd" id="5_uomjj"]
+[ext_resource type="PackedScene" uid="uid://o8mxghs5c3ed" path="res://GregFPSStuff/Enemies/Spawnable Objects/enemy_bullet.tscn" id="6_owp20"]
 [ext_resource type="Environment" uid="uid://bqp54syxqnqww" path="res://GregFPSStuff/Objects/World/world_environment.tres" id="7_tfq4t"]
 [ext_resource type="PackedScene" uid="uid://oc13h3au02ro" path="res://GregFPSStuff/Player/player_character.tscn" id="10_nucft"]
 
@@ -169,3 +171,11 @@ script = null
 [node name="box10" parent="physics_objects" instance=ExtResource("2_a2qm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1989, 3.06818, 19.9151)
 script = null
+
+[node name="BulletHolder" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_uomjj")
+Projectile_Velocity = 2.0
+Rigid_Body_Projectile = ExtResource("6_owp20")
+
+[editable path="proj_turret_static"]

@@ -6,5 +6,5 @@
 [node name="EnemyProjectile" type="Node3D"]
 script = ExtResource("1_e1sjk")
 Projectile_Velocity = 2.0
-Expirey_Time = 60
+Expirey_Time = 2
 Rigid_Body_Projectile = ExtResource("2_v7rgc")

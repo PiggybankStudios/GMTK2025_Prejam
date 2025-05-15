@@ -1,5 +1,5 @@
 extends Node3D
-class_name Enemy_Projectile
+class_name bullet_holder
 
 signal Hit_Successful
 
