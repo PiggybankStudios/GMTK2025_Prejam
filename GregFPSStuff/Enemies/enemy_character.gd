@@ -1,13 +1,13 @@
 extends CharacterBody3D
 
-@export var player: CharacterBody3D
+@export var main_target: CharacterBody3D
 var cooldown:bool = false
 @export var floating_distance: Vector2
 @export var move_speed: float = 5.0
 @export var chase_speed: float = 7.0
 @export var health := 100
 @export var invincible = false
-#@export var player = null
+#@export var main_target = null
 
 #@onready var target_area = $Area3D 
 #@onready var raycast = $RayCast
@@ -40,7 +40,7 @@ func _ready():
 	player_position = position # When ready, save the initial position
 
 func _process(delta):
-	#look_at(player.position, Vector3.UP, true)  # Look at player
+	#look_at(main_target.position, Vector3.UP, true)  # Look at main_target
 	
 	#if floating_distance > Vector2.ZERO:
 		##float_target_position.y += (cos(time * 5) * 1) * delta  # Sine movement (up and down)
@@ -69,19 +69,19 @@ func start_attack(new_target:CharacterBody3D)->void:
 func on_attack_cooldown()->void:
 	cooldown = false
 func _on_timer_timeout():
-	start_attack(player)
+	start_attack(main_target)
 
 func _physics_process(delta):
-	#look_at(player.position + Vector3(0, 0.5, 0), Vector3.UP, true)  # Look at player	
-	#if player and curr_chase_speed == 0:
-		#look_at(player.position, Vector3.UP, false)  # Look at player	
+	#look_at(main_target.position + Vector3(0, 0.5, 0), Vector3.UP, true)  # Look at main_target	
+	#if main_target and curr_chase_speed == 0:
+		#look_at(main_target.position, Vector3.UP, false)  # Look at main_target	
 		#target_velocity = curr_chase_speed
-	#if player and curr_chase_speed > 0:
-		#look_at(player.position)
-		#velocity = position.direction_to(player.position) * curr_chase_speed
-	if player != null:
-		look_at(player.position, Vector3.UP, false)  # Look at player	
-		target_velocity = position.direction_to(player.position) * curr_chase_speed
+	#if main_target and curr_chase_speed > 0:
+		#look_at(main_target.position)
+		#velocity = position.direction_to(main_target.position) * curr_chase_speed
+	if main_target != null:
+		look_at(main_target.position, Vector3.UP, false)  # Look at main_target	
+		target_velocity = position.direction_to(main_target.position) * curr_chase_speed
 	# target_velocity.x = curr_chase_speed
 	# target_velocity.z = curr_chase_speed
 	
@@ -94,7 +94,7 @@ func _physics_process(delta):
 		#chasing_target_position += (position - player_position) * delta * chase_speed
 	
 
-# Take damage from player
+# Take damage from main_target
 func damage(amount):
 	#Audio.play("sounds/enemy_hurt.ogg")
 	if invincible: 
@@ -140,7 +140,7 @@ func destroy():
 	#if raycast.is_colliding():
 		#var collider = raycast.get_collider()
 #
-		#if collider.has_method("damage"):  # Raycast collides with player
+		#if collider.has_method("damage"):  # Raycast collides with main_target
 			## Play muzzle flash animation(s)
 #
 			#muzzle_a.frame = 0
@@ -153,7 +153,7 @@ func destroy():
 #
 			##Audio.play("sounds/enemy_attack.ogg")
 #
-			#collider.damage(5)  # Apply damage to player
+			#collider.damage(5)  # Apply damage to main_target
 
 
 func _on_detection_area_area_entered(area):
@@ -165,11 +165,11 @@ func _on_detection_area_body_entered(body):
 		return
 	print_debug("Enter: ", body)
 	if body.is_in_group("Player"):
-		player = body
+		main_target = body
 		curr_chase_speed = chase_speed
 		attack_timer.process_mode = PROCESS_MODE_INHERIT
 		print_debug("chasing Player!")
-		# enemy_attack_holder.target = player
+		# enemy_attack_holder.target = main_target
 	pass # Replace with function body.
 
 
@@ -178,7 +178,7 @@ func _on_detection_area_body_exited(body):
 		return
 	print_debug("Exiting: ", body)
 	if body.is_in_group("Player"):
-		player = body
+		main_target = body
 		curr_chase_speed = 0.0
 		attack_timer.process_mode = PROCESS_MODE_DISABLED
 		print_debug("Stopped Chasing Player...")

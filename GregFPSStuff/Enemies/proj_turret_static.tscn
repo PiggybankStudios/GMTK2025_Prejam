@@ -167,11 +167,15 @@ axis_lock_angular_x = true
 axis_lock_angular_z = true
 slide_on_ceiling = false
 script = ExtResource("1_hd3lw")
+floating_distance = null
 move_speed = 0.0
 chase_speed = 0.0
 health = 2
 invincible = true
 rigid_body_projectile = ExtResource("2_8jih4")
+attack_rate = null
+projectile_velocity = null
+projectile_damage = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Enemy"]]
 shape = SubResource("CapsuleShape3D_yxmpu")
