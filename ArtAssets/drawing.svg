@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.77771465"
-     inkscape:cx="-122.79568"
-     inkscape:cy="863.42723"
+     inkscape:zoom="1.0998546"
+     inkscape:cx="88.648081"
+     inkscape:cy="412.32723"
      inkscape:window-width="2560"
      inkscape:window-height="1377"
      inkscape:window-x="1912"
@@ -54,32 +54,50 @@
        inkscape:randomized="0"
        d="m 194.63175,420.14124 -18.81503,57.90672 -49.25841,35.78833 H 65.671577 L 16.413173,478.04796 -2.4018631,420.14124 16.413173,362.23451 l 49.258404,-35.78833 60.886733,0 49.25841,35.78833 z"
        transform="matrix(0.26458333,0,0,0.26458333,23.902847,61.577246)"
-       inkscape:transform-center-y="-1.4004708e-06" />
+       inkscape:transform-center-y="-1.4004708e-06"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear5Center.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 53.539701,133.58716 -8.412882,0 -3.848367,14.3623 16.109615,0 z"
        id="path1896"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear5Spoke.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 87.869326,164.64141 -2.599731,-8.00113 -14.848575,0.77819 4.978144,15.32114 z"
        id="path3100"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear5.png"
+       inkscape:export-xdpi="60"
+       inkscape:export-ydpi="60" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 68.943412,206.88709 6.806172,-4.94496 -5.328565,-13.88136 -13.032946,9.46898 z"
        id="path3102"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear5.png"
+       inkscape:export-xdpi="60"
+       inkscape:export-ydpi="60" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 22.916943,201.94212 6.80617,4.94497 11.555338,-9.35733 -13.032942,-9.469 z"
        id="path3104"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear5.png"
+       inkscape:export-xdpi="60"
+       inkscape:export-ydpi="60" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 13.396921,156.64027 -2.59973,8.00114 12.470163,8.0982 4.97814,-15.32114 z"
        id="path3106"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear5.png"
+       inkscape:export-xdpi="60"
+       inkscape:export-ydpi="60" />
     <path
        sodipodi:type="star"
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:3.77953;stroke-miterlimit:4;stroke-dasharray:none"
@@ -97,46 +115,73 @@
        d="m 584.98227,136.36199 28.16419,42.15069 9.88995,49.72012 -9.88995,49.72013 -28.16419,42.15069 -42.15069,28.16419 -49.72013,9.88995 -49.72013,-9.88995 -42.15069,-28.16419 -28.16419,-42.15069 -9.88995,-49.72013 9.88995,-49.72013 28.16419,-42.15069 42.15069,-28.16419 49.72013,-9.889944 49.72013,9.889944 z"
        transform="matrix(0.25972217,0.0504849,-0.0504849,0.25972217,13.91939,-23.785201)"
        inkscape:transform-center-x="1.5554514e-05"
-       inkscape:transform-center-y="5.0776581e-06" />
+       inkscape:transform-center-y="5.0776581e-06"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear8.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 134.26247,12.279905 -7.69119,-10e-7 -2.95569,14.420827 13.41271,-0.05852 z"
        id="path3371"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear8.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 167.16798,29.05238 -5.43849,-5.438493 -12.28706,8.107076 9.5256,9.442838 z"
        id="path3928"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear8.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 178.57575,64.180019 v -7.691188 l -14.42083,-2.955695 0.0585,13.412711 z"
        id="path3930"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear8.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 161.80327,97.085525 5.43849,-5.438491 -8.10707,-12.287059 -9.44285,9.525585 z"
        id="path3932"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear8.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 126.67563,108.49332 h 7.69118 l 2.9557,-14.420828 -13.4127,0.0585 z"
        id="path3934"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear8.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 93.770109,91.720832 5.438489,5.43849 12.287062,-8.107078 -9.52558,-9.442845 z"
        id="path3936"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear8.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 82.36233,56.593174 -10e-7,7.691185 14.420835,2.955695 -0.0585,-13.412702 z"
        id="path3938"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear8.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 99.13482,23.687649 -5.438489,5.438488 8.107079,12.287064 9.44285,-9.525578 z"
        id="path3940"
-       sodipodi:nodetypes="ccccc" />
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="G:\Creations\Godot_projects\GMTK2025\GMTK2025_Prejam\ArtAssets\Gear8.png"
+       inkscape:export-xdpi="120"
+       inkscape:export-ydpi="120" />
   </g>
 </svg>
