@@ -20,7 +20,7 @@ func _ready() -> void:
 	get_tree().create_timer(Expirey_Time).timeout.connect(_on_timer_timeout)
 
 func _Set_Projectile(_proj: PackedScene,_Damage: int = 0,_spread:Vector2 = Vector2.ZERO, _Range: float = 1000, _source: Node3D = null):
-	print("Setting Projectile")
+	# print("Setting Projectile")
 	Damage = _Damage
 	# global_transform.origin = _source.global_transform.origin
 	# transform.origin = _source.transform.origin
@@ -55,7 +55,7 @@ func Shooter_Ray_Cast(_source: Node3D, _range: float = 1000):
 		return [null,Ray_End]
 
 func Launch_Projectile(_projectile):
-	print("Launching Projectile")
+	# print("Launching Projectile")
 	var _proj = _projectile.instantiate()
 	add_child(_proj)
 	
@@ -69,7 +69,7 @@ func Launch_Projectile(_projectile):
 	_proj.set_linear_velocity(global_transform.basis.z *Projectile_Velocity)
 	
 func Launch_Rigid_Body_Projectile(_Point: Vector3, _projectile):
-	print("Launching Projectile from holder" + str(Projectiles_Spawned.size()))
+	# print("Launching Projectile from holder" + str(Projectiles_Spawned.size()))
 	var _proj = _projectile.instantiate()
 	add_child(_proj)
 	# _proj.global_transform.origin = _Point
@@ -85,7 +85,7 @@ func Launch_Rigid_Body_Projectile(_Point: Vector3, _projectile):
 	Projectile_Direction = _Direction
 
 func Launch_Rigid_Body_Bullet(_Point: Vector3, _projectile:PackedScene):
-	print("Launching Projectile from holder" + str(Projectiles_Spawned.size()))
+	# print("Launching Projectile from holder" + str(Projectiles_Spawned.size()))
 	var _proj = _projectile.instantiate()
 	add_child(_proj)
 	# _proj.global_transform.origin = _Point

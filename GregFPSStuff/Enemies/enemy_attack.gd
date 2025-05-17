@@ -22,7 +22,7 @@ func _on_timer_timeout():
 
 
 func Load_Projectile():
-	print("Loading Projectile")
+	# print("Loading Projectile")
 	var _bullet  = bullet_to_load.instantiate()
 	# var _projectile:Enemy_Projectile  = projectile_to_load.instantiate()
 	Bullet_Point.add_child(_bullet)

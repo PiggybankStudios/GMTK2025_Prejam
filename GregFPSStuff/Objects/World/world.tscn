@@ -184,7 +184,8 @@ Projectile_Velocity = 2.0
 Rigid_Body_Projectile = ExtResource("6_owp20")
 
 [node name="Computer" type="Area3D" parent="." node_paths=PackedStringArray("player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78513, 1.88244, 3.12164)
+collision_mask = 2
 script = ExtResource("7_5v27y")
 player = NodePath("../Player_Character")
 
@@ -192,11 +193,12 @@ player = NodePath("../Player_Character")
 shape = SubResource("BoxShape3D_owp20")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Computer/CollisionShape3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.392384, 0)
+transform = Transform3D(0.47333, 0, 0, 0, 1, 0, 0, 0, 0.52352, 0, 0, 0)
 mesh = SubResource("BoxMesh_5v27y")
 
 [node name="PressurePlate" parent="." instance=ExtResource("7_u86h7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23471, -0.717978)
+transform = Transform3D(2.58, 0, 0, 0, 2.58, 0, 0, 0, 2.58, 8.36875, 2.41655, 3.8744)
+collision_mask = 2
 
 [connection signal="body_entered" from="Computer" to="Computer" method="_on_body_entered"]
 [connection signal="body_exited" from="Computer" to="Computer" method="_on_body_exited"]
