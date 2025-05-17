@@ -20,5 +20,7 @@ func _ready() -> void:
 	
 	
 func _process(_delta) -> void:
-
+	if (Input.is_action_just_pressed("PauseMenu")):
+		process_mode = Node.PROCESS_MODE_DISABLED
+		get_tree().root.get_child(1).getUnPaused()
 	pass

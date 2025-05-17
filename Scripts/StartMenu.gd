@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var selected_level = preload("res://Spaces/Main_Scene.tscn").instantiate()
+var selected_level = preload("res://Spaces/space_Main.tscn").instantiate()
 
 var MenuIsMoving = 0
 var MenuMoveDecision = 0
@@ -10,8 +10,13 @@ var MenuItem = 5
 var MenuTarget = 5
 var MenuSpeed = 2
 var iterations = 0
+var MenuIsPaused = false
+var MenuPauseMenu = false
 
 func _input(event):
+	if MenuIsPaused :
+		return
+	
 	if (event is InputEventMouseButton and event.is_pressed()):
 		if (event.button_index == MOUSE_BUTTON_LEFT):
 			var mousePos = event.global_position
@@ -28,6 +33,9 @@ func _input(event):
 			HandleMenuSelection()
 		
 func _process(delta):
+	if MenuIsPaused :
+		return
+		
 	iterations += 1
 	if MenuIsMoving != 0 :
 		if MenuTargetReached :
@@ -101,15 +109,29 @@ func HandleMenuSelection():
 	elif (MenuItem == 4): #levels
 		pass
 	elif (MenuItem == 5): #New Game
-		get_tree().root.add_child(selected_level)
-		getPaused()
-		pass
+		if MenuPauseMenu :
+			get_tree().root.get_child(0).process_mode = Node.PROCESS_MODE_PAUSABLE
+			getPaused()
+			#MenuPauseMenu = true
+		else :
+			get_tree().root.add_child(selected_level)
+			getPaused()
+			var tLabel = get_child(0).get_child(2).get_child(5 - MenuItem)
+			tLabel.setOptionText("Continue")
+			#MenuPauseMenu = true
 
 func getPaused():
 	hide()
-	get_tree().paused = true
+	var tLabel = get_child(0).get_child(2).get_child(5 - MenuItem)
+	#tLabel.SetAsPassive()
+	process_mode = Node.PROCESS_MODE_DISABLED
+	#MenuIsPaused = true
+	#print_tree_pretty()
 	
 func getUnPaused():
 	show()
-	get_tree().paused = false
+	var tLabel = get_child(0).get_child(2).get_child(5 - MenuItem)
+	#tLabel.SetAsActive()
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	#MenuIsPaused = false
 	

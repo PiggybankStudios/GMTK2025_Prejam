@@ -13,8 +13,11 @@ func SetAsActive():
 func SetAsPassive():
 	activeFlag = false
 
-func SetFontAndSize(tFont,tSize,tText):
+func setOptionText(tText):
 	tLabel.text = tText
+
+func SetFontAndSize(tFont,tSize,tText):
+	setOptionText(tText)
 	tLabel.position = Vector2(tLabel.position.x, tLabel.position.y)
 	tLabel.position = Vector2(tLabel.position.x - tLabel.size.x/2, tLabel.position.y - tLabel.size.y)
 
