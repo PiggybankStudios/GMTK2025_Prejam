@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://beql60mlyuv4k"]
+[gd_scene load_steps=6 format=3 uid="uid://beql60mlyuv4k"]
 
 [ext_resource type="Texture2D" uid="uid://1fscyq5ab7vs" path="res://ArtAssets/Gear8.png" id="1_5none"]
+[ext_resource type="Script" uid="uid://cusf7tjg3t8cd" path="res://Scripts/StartMenu.gd" id="1_23ta6"]
 [ext_resource type="FontFile" uid="uid://d3v5hwuptmihs" path="res://Fonts/The Centurion.otf" id="2_23ta6"]
 [ext_resource type="Texture2D" uid="uid://ch7opmftlw7ab" path="res://ArtAssets/Gear5Center.png" id="3_5none"]
 [ext_resource type="Script" uid="uid://bbj16j63n61ky" path="res://Scripts/StartMenu_GearText.gd" id="4_vgvn6"]
 
 [node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_23ta6")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -16,28 +18,46 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Gear8" type="Sprite2D" parent="Control"]
-position = Vector2(247, 233)
-scale = Vector2(2, 2)
+position = Vector2(233, 262)
 texture = ExtResource("1_5none")
 
 [node name="Label_Title" type="Label" parent="Control/Gear8"]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -107.0
-offset_top = -135.0
-offset_right = 106.0
-offset_bottom = -95.0
+offset_left = -242.0
+offset_top = -271.5
+offset_right = 244.0
+offset_bottom = -189.5
 grow_vertical = 2
 size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("2_23ta6")
-theme_override_font_sizes/font_size = 21
+theme_override_font_sizes/font_size = 44
+text = "LOOP-MECHANIC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Gear82" type="Sprite2D" parent="Control"]
+position = Vector2(941, 365)
+texture = ExtResource("1_5none")
+
+[node name="Label_Title" type="Label" parent="Control/Gear82"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -271.5
+offset_right = 244.0
+offset_bottom = -189.5
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_23ta6")
+theme_override_font_sizes/font_size = 44
 text = "LOOP-MECHANIC"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Gear5" type="Sprite2D" parent="Control"]
-position = Vector2(591, 357)
-scale = Vector2(2, 2)
+position = Vector2(577, 357)
 texture = ExtResource("3_5none")
 script = ExtResource("4_vgvn6")
