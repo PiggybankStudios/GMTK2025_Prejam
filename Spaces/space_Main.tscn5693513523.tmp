@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://nnohrop64gvc"]
+
+[ext_resource type="Script" uid="uid://cuixftv7hii4i" path="res://Scripts_Sean/space_main.gd" id="1_46eog"]
+[ext_resource type="PackedScene" uid="uid://bnq6lnsdoxdak" path="res://Prefabs/prefab_SphereBlob.tscn" id="1_h1ge5"]
+
+[node name="MainScene_Root" type="Node3D"]
+script = ExtResource("1_46eog")
+
+[node name="MeshInstance3D" parent="." instance=ExtResource("1_h1ge5")]

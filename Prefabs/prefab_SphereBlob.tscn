@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnq6lnsdoxdak"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_er0r6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_yio7p"]
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_er0r6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.406746, 0.497604, 0)
+mesh = SubResource("SphereMesh_yio7p")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0378237, 0.497604, -0.421547)
+mesh = SubResource("SphereMesh_yio7p")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.653652, 0, 0, 0, 0.705312, 0, 0, 0, 0.763215, -0.283118, 0.93176, -0.603036)
+mesh = SubResource("SphereMesh_yio7p")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.653652, 0, 0, 0, 0.705312, 0, 0, 0, 0.763215, 0.417334, 0.93176, 0.288716)
+mesh = SubResource("SphereMesh_yio7p")

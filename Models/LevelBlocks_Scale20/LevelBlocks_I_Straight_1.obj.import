@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bw2v22yuxpmuk"
+path="res://.godot/imported/LevelBlocks_I_Straight_1.obj-6d6643aa930a8d6593633a54c589395d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/LevelBlocks_I_Straight_1.obj-6d6643aa930a8d6593633a54c589395d.mesh"]
+
+source_file="res://Models/LevelBlocks_Scale20/LevelBlocks_I_Straight_1.obj"
+dest_files=["res://.godot/imported/LevelBlocks_I_Straight_1.obj-6d6643aa930a8d6593633a54c589395d.mesh", "res://.godot/imported/LevelBlocks_I_Straight_1.obj-6d6643aa930a8d6593633a54c589395d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
