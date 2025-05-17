@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+var selected_level = preload("res://Spaces/Main_Scene.tscn").instantiate()
+
 var MenuIsMoving = 0
 var MenuMoveDecision = 0
 var MenuTargetReached = true
@@ -98,5 +100,16 @@ func HandleMenuSelection():
 		pass
 	elif (MenuItem == 4): #levels
 		pass
-	elif (MenuItem == 5): #continue
+	elif (MenuItem == 5): #New Game
+		get_tree().root.add_child(selected_level)
+		getPaused()
 		pass
+
+func getPaused():
+	hide()
+	get_tree().paused = true
+	
+func getUnPaused():
+	show()
+	get_tree().paused = false
+	

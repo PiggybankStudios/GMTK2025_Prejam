@@ -1,6 +1,6 @@
 extends Sprite2D
 
-var MenuOptions = ["Continue", "Levels", "Options", "Credits", "Exit"]
+var MenuOptions = ["New Game", "Levels", "Options", "Credits", "Exit"]
 var fontSize = 30
 var startX = 0
 var startY = -140
