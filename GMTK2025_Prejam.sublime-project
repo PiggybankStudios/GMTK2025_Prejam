@@ -1,0 +1,24 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+			"folder_exclude_patterns": [
+				".godot",
+				".vscode",
+				"Fonts",
+				".vs",
+			],
+			"file_exclude_patterns": [
+				"*.svg",
+				"*.import",
+				"*.uid",
+				"*.tmp",
+				"*.glb",
+				"*.tscn",
+				"*.bak",
+				".editorconfig",
+			],
+		}
+	]
+}
