@@ -10,7 +10,7 @@ func _ready():
 	#pass
 func _input(event):
 	if(player_in_range): 
-		if (event.is_action_pressed("Secondary_Fire") or event.is_action_pressed("Primary_Fire")):
+		if (event.is_action_pressed("Secondary_Fire") or event.is_action_pressed("Shoot")):
 			print("Computer Activated")	
 
 func _on_body_entered(body: Node3D) -> void:

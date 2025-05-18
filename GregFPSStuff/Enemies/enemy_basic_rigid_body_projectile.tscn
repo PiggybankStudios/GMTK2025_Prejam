@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://0leatwuwt1cd"]
+[gd_scene load_steps=3 format=3 uid="uid://cqo064fggwhdj"]
 
 [ext_resource type="Script" uid="uid://ccrqwdbkacvqs" path="res://Player_Controller/scripts/Projectiles/Enemy_Projectile.gd" id="1_e1sjk"]
 [ext_resource type="PackedScene" uid="uid://o8mxghs5c3ed" path="res://Enemies/Spawnable Objects/enemy_bullet.tscn" id="2_v7rgc"]
