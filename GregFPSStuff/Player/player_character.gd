@@ -74,7 +74,7 @@ var Applied_Force : Vector3 = Vector3.ZERO
 
 func _ready():
 	Update_CameraRotation()
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Calculate_Movement_Parameters()
 	
 func Update_CameraRotation():
@@ -87,10 +87,11 @@ func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		
-	if event is InputEventMouseMotion:
+	
+	if event is InputEventMouseButton and event.pressed:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var MouseEvent = event.relative * MouseSensitivity
 		CameraLook(MouseEvent)
 		
