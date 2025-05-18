@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=5 format=3 uid="uid://cb4c1kobko4of"]
+
+[ext_resource type="PackedScene" uid="uid://bq2i1rh241oy0" path="res://GregFPSStuff/Objects/Spawnable_Objects/Projectiles_To_Load/test_rigid_body_projectile_0.tscn" id="1_6jgfp"]
+[ext_resource type="PackedScene" uid="uid://ubjo6llka7im" path="res://GregFPSStuff/Objects/Spawnable_Objects/Weapons/greg_dual_shot.tscn" id="2_s54dn"]
+[ext_resource type="PackedScene" uid="uid://3mb12hvruajh" path="res://GregFPSStuff/Objects/Spawnable_Objects/SprayProfiles/spray_profile_2.tscn" id="3_2ywk1"]
+[ext_resource type="Script" uid="uid://bedkn2lsybm3a" path="res://GregFPSStuff/Objects/Weapon_State_Machine/weapon_resource.gd" id="4_b3feh"]
+
+[resource]
+script = ExtResource("4_b3feh")
+Weapon_Name = "gregDualShot"
+Pick_Up_Anim = "Global/blasterI Active"
+Shoot_Anim = "Global/blasterL Shoot"
+Reload_Anim = "Global/blasterN Reload"
+Change_Anim = "Global/blasterL De-Activate"
+Drop_Anim = "Global/blasterI Drop"
+Out_Of_Ammo_Anim = "Global/blasterL OOA"
+Melee_Anim = "Global/blasterN Melee"
+Current_Ammo = 100
+Reserve_Ammo = 500
+Magazine = 100
+Max_Ammo = 600
+Damage = 1
+Melee_Damage = 10.0
+AutoFire = true
+Fire_Range = 2000
+Can_Be_Dropped = false
+Weapon_Drop = ExtResource("2_s54dn")
+Weapon_Spray = ExtResource("3_2ywk1")
+Projectile_To_Load = ExtResource("1_6jgfp")
+Incremental_Reload = false

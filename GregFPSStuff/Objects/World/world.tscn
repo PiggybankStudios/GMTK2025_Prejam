@@ -1,7 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dniyrkkdwf3cb"]
+[gd_scene load_steps=14 format=3 uid="uid://dniyrkkdwf3cb"]
 
 [ext_resource type="PackedScene" uid="uid://bwc28g513sfim" path="res://GregFPSStuff/Objects/World/box_1.tscn" id="2_a2qm0"]
+[ext_resource type="PackedScene" uid="uid://bpp6ljv0x8gau" path="res://GregFPSStuff/Enemies/proj_turret_static.tscn" id="4_rdldg"]
+[ext_resource type="Script" uid="uid://r52rx7sts622" path="res://GregFPSStuff/Objects/World/bullet_holder.gd" id="5_uomjj"]
+[ext_resource type="PackedScene" uid="uid://o8mxghs5c3ed" path="res://GregFPSStuff/Enemies/Spawnable Objects/enemy_bullet.tscn" id="6_owp20"]
+[ext_resource type="Script" uid="uid://bi7qu6saq4ac2" path="res://GregFPSStuff/Objects/World/computer_controller.gd" id="7_5v27y"]
 [ext_resource type="Environment" uid="uid://bqp54syxqnqww" path="res://GregFPSStuff/Objects/World/world_environment.tres" id="7_tfq4t"]
+[ext_resource type="PackedScene" uid="uid://c5mla738g34kp" path="res://pressure_plate.tscn" id="7_u86h7"]
 [ext_resource type="PackedScene" uid="uid://oc13h3au02ro" path="res://GregFPSStuff/Player/player_character.tscn" id="10_nucft"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t62yf"]
@@ -13,6 +18,10 @@ uv1_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yv2ts"]
 uv1_triplanar = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_owp20"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5v27y"]
+
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -22,10 +31,18 @@ environment = ExtResource("7_tfq4t")
 transform = Transform3D(-0.843573, -0.446602, -0.298213, -0.283274, -0.101708, 0.953631, -0.456224, 0.888933, -0.0407129, 0, 5.80189, 0)
 layers = 524289
 light_color = Color(1, 1, 0.780392, 1)
+light_energy = 0.154
+light_indirect_energy = 0.48
+light_volumetric_fog_energy = 1.325
+light_angular_distance = 34.02
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="Player_Character" parent="." instance=ExtResource("10_nucft")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.79003, 2.36574, 5.1689)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.77553, 2.36574, 5.14772)
+
+[node name="proj_turret_static" parent="." instance=ExtResource("4_rdldg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.602, 2.69994, 11.7263)
 
 [node name="level_geometry" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -159,3 +176,31 @@ script = null
 [node name="box10" parent="physics_objects" instance=ExtResource("2_a2qm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1989, 3.06818, 19.9151)
 script = null
+
+[node name="BulletHolder" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_uomjj")
+Projectile_Velocity = 2.0
+Rigid_Body_Projectile = ExtResource("6_owp20")
+
+[node name="Computer" type="Area3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78513, 1.88244, 3.12164)
+collision_mask = 2
+script = ExtResource("7_5v27y")
+player = NodePath("../Player_Character")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Computer"]
+shape = SubResource("BoxShape3D_owp20")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Computer/CollisionShape3D"]
+transform = Transform3D(0.47333, 0, 0, 0, 1, 0, 0, 0, 0.52352, 0, 0, 0)
+mesh = SubResource("BoxMesh_5v27y")
+
+[node name="PressurePlate" parent="." instance=ExtResource("7_u86h7")]
+transform = Transform3D(2.58, 0, 0, 0, 2.58, 0, 0, 0, 2.58, 8.36875, 2.41655, 3.8744)
+collision_mask = 2
+
+[connection signal="body_entered" from="Computer" to="Computer" method="_on_body_entered"]
+[connection signal="body_exited" from="Computer" to="Computer" method="_on_body_exited"]
+
+[editable path="proj_turret_static"]

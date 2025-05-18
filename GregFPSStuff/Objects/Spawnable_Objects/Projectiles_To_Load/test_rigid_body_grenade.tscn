@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://choffhq5cbpox"]
+
+[ext_resource type="Script" uid="uid://cig06rpqhkgb5" path="res://Player_Controller/scripts/Projectiles/Projectile.gd" id="1_jbswf"]
+[ext_resource type="PackedScene" uid="uid://bh6jngqng7wkf" path="res://Objects/TimeBomb.tscn" id="2_rekwe"]
+
+[node name="Projectile" type="Node3D"]
+script = ExtResource("1_jbswf")
+Projectile_Type = "Rigidbody_Projectile"
+Projectile_Velocity = 5
+Rigid_Body_Projectile = ExtResource("2_rekwe")
+Destroy_RB_Projectile_On_Hit = false

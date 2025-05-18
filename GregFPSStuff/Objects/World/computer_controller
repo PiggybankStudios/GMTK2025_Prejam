@@ -1,0 +1,14 @@
+@export var player: CharacterBody3D
+
+func _ready():
+	pass
+    
+func _process(delta):
+    pass
+#func _on_body_entered(body : CharacterBody3D):
+    #pass
+    # if (body == player && input.is_action_just_pressed("interact")):
+	#bring up programming menu 
+	
+
+
