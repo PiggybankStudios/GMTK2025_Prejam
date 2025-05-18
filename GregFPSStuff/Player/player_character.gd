@@ -211,7 +211,7 @@ func updateSpeed(moveVec):
 		SpeedCurrent = SpeedMin
 	if SpeedCurrent > SpeedMax * Speed_Modifier :
 		SpeedCurrent = SpeedMax * Speed_Modifier
-	print(Speed_Modifier, " : ", SpeedCurrent)
+	#print(Speed_Modifier, " : ", SpeedCurrent)
 
 func _physics_process(delta):
 	Sprint_Replenish(delta)

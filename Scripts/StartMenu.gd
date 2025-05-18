@@ -12,6 +12,7 @@ var MenuSpeed = 2
 var iterations = 0
 var MenuIsPaused = false
 var MenuPauseMenu = false
+var MainGame = "/root/MainScene_Root"
 
 func _input(event):
 	if MenuIsPaused :
@@ -108,17 +109,19 @@ func HandleMenuSelection():
 		pass
 	elif (MenuItem == 4): #levels
 		pass
-	elif (MenuItem == 5): #New Game
+	elif (MenuItem == 5): #New Game/Continue
 		if MenuPauseMenu :
-			get_tree().root.get_child(0).process_mode = Node.PROCESS_MODE_PAUSABLE
+			print("Unpausing game")
+			get_tree().root.get_node(MainGame).unPauseMe()
 			getPaused()
-			#MenuPauseMenu = true
+			MenuPauseMenu = true
 		else :
+			print("Starting game")
 			get_tree().root.add_child(selected_level)
 			getPaused()
 			var tLabel = get_child(0).get_child(2).get_child(5 - MenuItem)
 			tLabel.setOptionText("Continue")
-			#MenuPauseMenu = true
+			MenuPauseMenu = true
 
 func getPaused():
 	hide()
