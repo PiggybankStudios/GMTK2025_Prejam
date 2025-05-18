@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmky3lfdcv1iw"]
+[gd_scene load_steps=8 format=3 uid="uid://dmky3lfdcv1iw"]
 
 [ext_resource type="Script" uid="uid://db7q1jyvuprg" path="res://Taylor/Scripts/TestScript.gd" id="1_s6tdp"]
-[ext_resource type="PackedScene" uid="uid://dw5v4p2tttlre" path="res://Taylor/Prefabs/TestPrefab.tscn" id="2_vug6j"]
+[ext_resource type="PackedScene" uid="uid://b5vb2xjifhjoo" path="res://Taylor/Prefabs/Taylor_Player.tscn" id="2_s6tdp"]
 
 [sub_resource type="Sky" id="Sky_weqsq"]
 
@@ -13,27 +13,27 @@ ambient_light_color = Color(0.368627, 0.505882, 0.972549, 1)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_damma"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6tdp"]
+albedo_color = Color(0.168627, 0.282353, 0.109804, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_vug6j"]
+material = SubResource("StandardMaterial3D_s6tdp")
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_s6tdp")
-
-[node name="Boxies" parent="." instance=ExtResource("2_vug6j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00814915, 1.48843, 3.73024)
-
-[node name="Boxables" parent="." instance=ExtResource("2_vug6j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.013, 0.493932, 3.14923)
-
-[node name="Boxtastic" parent="." instance=ExtResource("2_vug6j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.52662, 0.520715, 0.0298266)
-
-[node name="BoxyBox" parent="." instance=ExtResource("2_vug6j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00814915, 0.493932, 5.68444)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.2222e-08, -0.258819, 0.965926, -1.13133e-08, 0.965926, 0.258819, -1, 8.88178e-16, -4.37114e-08, 5.25569, 3.9162, 3.93732)
-
-[node name="Sunlight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.898779, -0.203151, 0.388493, 0, 0.886155, 0.463389, -0.438403, -0.416484, 0.796457, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_njrys")
 camera_attributes = SubResource("CameraAttributesPractical_damma")
+
+[node name="Sunlight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.898779, -0.203151, 0.388493, 0, 0.886155, 0.463389, -0.438403, -0.416484, 0.796457, 0, 0, 0)
+
+[node name="TestLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5195, 1.60163, 9.53674e-07)
+
+[node name="Player" parent="." instance=ExtResource("2_s6tdp")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(14.8299, 0, 0, 0, -7.78176e-07, 1, 0, -17.8026, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_vug6j")
