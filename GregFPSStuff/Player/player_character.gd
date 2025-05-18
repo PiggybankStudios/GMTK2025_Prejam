@@ -34,14 +34,16 @@ enum {LEFT = 1, CENTRE = 0, RIGHT = -1}
 @export var Sprint_Timer: Timer
 #@export var Sprint_Cooldown_Timer: Timer
 
-@export var Sprint_Cooldown_Time: float = 3.0
-@export var Sprint_Time: float = 1.0
+@export var Sprint_Cooldown_Time: float = 2.0
+@export var Sprint_Time: float = 2.0
 @export var Sprint_Replenish_rate: float = 0.30
 var Sprint_On_Cooldown: bool = false
 var Sprint_Time_Remaining: float = Sprint_Time
 @onready var Sprint_Bar: Range = $CanvasLayer/Sprint_Bar
 
 const NORMAL_SPEED = 1
+const FAST_SPEED = 2.5
+const SLOW_SPEED = 0.5
 @export_range(1.0,3.0) var Sprint_Speed: float = 2.0
 @export_range(0.1,1.0) var Walk_Speed: float = 0.5
 var Speed_Modifier: float = NORMAL_SPEED
@@ -60,7 +62,11 @@ var Speed_Modifier: float = NORMAL_SPEED
 var Jump_Gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var Fall_Gravity: float
 var Jump_Velocity: float
-var Speed: float
+var SpeedMax: float = 4
+var SpeedMin: float = 1
+var SpeedCurrent: float = 1
+var SpeedAccel: float = 0.5
+var Speed: float = 4
 var Jump_Available: bool = true
 var Jump_Buffer: bool = false
 
@@ -110,17 +116,19 @@ func _input(event):
 
 	if Input.is_action_just_pressed("sprint") and !Crouched:
 		if !Sprint_On_Cooldown:
-			Speed_Modifier = Sprint_Speed
+			#Speed_Modifier = Sprint_Speed
+			Speed_Modifier = FAST_SPEED
 			Sprint_Timer.start(Sprint_Time_Remaining)
 
 	if Input.is_action_just_pressed("walk") and !Crouched:
-		Speed_Modifier = Walk_Speed
+		Speed_Modifier = NORMAL_SPEED
 
 func Calculate_Movement_Parameters()->void:
 	Jump_Gravity = (2*Jump_Height)/pow(Jump_Peak_Time,2)
 	Fall_Gravity = (2*Jump_Height)/pow(Jump_Fall_Time,2)
 	Jump_Velocity = Jump_Gravity * Jump_Peak_Time
 	Speed = Jump_Distance/(Jump_Peak_Time+Jump_Fall_Time)
+	SpeedCurrent = SpeedMin
 	_speed = Speed
 
 func lean(blend_amount: int):
@@ -145,8 +153,9 @@ func Crouch():
 	if !Crouch_Collision.is_colliding():
 		if Crouched:
 			Blend = STANDING
-		else:
 			Speed_Modifier = NORMAL_SPEED
+		else:
+			Speed_Modifier = SLOW_SPEED
 			exit_sprint()
 			
 			if is_on_floor():
@@ -194,7 +203,16 @@ func Sprint_Replenish(delta):
 		Sprint_Bar.hide()
 	else:
 		Sprint_Bar.show()
-	
+
+func updateSpeed(moveVec):
+	if (moveVec != Vector2(0,0)):
+		SpeedCurrent += SpeedAccel
+	else :
+		SpeedCurrent = SpeedMin
+	if SpeedCurrent > SpeedMax * Speed_Modifier :
+		SpeedCurrent = SpeedMax * Speed_Modifier
+	print(Speed_Modifier, " : ", SpeedCurrent)
+
 func _physics_process(delta):
 	Sprint_Replenish(delta)
 	#lean_collision()
@@ -234,9 +252,13 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-
-	velocity.x = move_toward(velocity.x, direction.x * _speed, Speed)
-	velocity.z = move_toward(velocity.z, direction.z * _speed, Speed)
+	
+	updateSpeed(input_dir)
+	
+	#velocity.x = move_toward(velocity.x, direction.x * _speed, Speed)
+	#velocity.z = move_toward(velocity.z, direction.z * _speed, Speed)
+	velocity.x = move_toward(velocity.x, direction.x * SpeedMax * Speed_Modifier, SpeedAccel)
+	velocity.z = move_toward(velocity.z, direction.z * SpeedMax * Speed_Modifier, SpeedAccel)
 	
 	velocity += Applied_Force
 	
