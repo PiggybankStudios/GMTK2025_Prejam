@@ -13,6 +13,17 @@ var iterations = 0
 var MenuIsPaused = false
 var MenuPauseMenu = false
 var MainGame = "/root/MainScene_Root"
+var SndRotate1 : AudioStreamPlayer
+var SndRotate2 : AudioStreamPlayer
+var SndClick : AudioStreamPlayer
+var quickPauseAfterDecision = false
+var quickPausetime = 0
+var quickPausetimeMax = 0.3
+
+func _ready():
+	SndRotate1 = get_node("SoundEffectRotate1")
+	SndRotate2 = get_node("SoundEffectRotate2")
+	SndClick = get_node("SoundEffectClick")
 
 func _input(event):
 	if MenuIsPaused :
@@ -25,17 +36,29 @@ func _input(event):
 			print(event.global_position)
 	
 	if event.is_action_pressed("ui_left"):
-		MenuMoveDecision = 1
+		if (MenuIsMoving == 0 and not quickPauseAfterDecision):
+			MenuMoveDecision = 1
+			SndRotate1.play()
 	elif event.is_action_pressed("ui_right"):
-		MenuMoveDecision = -1
+		if (MenuIsMoving == 0 and not quickPauseAfterDecision):
+			MenuMoveDecision = -1
+			SndRotate2.play()
 	elif event.is_action_pressed("ui_accept"):
 		print("accept ",MenuItem)
-		if (MenuIsMoving == 0):
-			HandleMenuSelection()
+		if (MenuIsMoving == 0 and not quickPauseAfterDecision):
+			SndClick.play()
+			quickPauseAfterDecision = true
 		
 func _process(delta):
 	if MenuIsPaused :
 		return
+		
+	if quickPauseAfterDecision :
+		quickPausetime += delta
+		if quickPausetime > quickPausetimeMax :
+			quickPausetime = 0
+			quickPauseAfterDecision = false
+			HandleMenuSelection()
 		
 	iterations += 1
 	if MenuIsMoving != 0 :

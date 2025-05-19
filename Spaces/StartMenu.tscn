@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://beql60mlyuv4k"]
+[gd_scene load_steps=10 format=3 uid="uid://beql60mlyuv4k"]
 
 [ext_resource type="Texture2D" uid="uid://1fscyq5ab7vs" path="res://ArtAssets/Gear8.png" id="1_5none"]
 [ext_resource type="Script" uid="uid://cusf7tjg3t8cd" path="res://Scripts/StartMenu.gd" id="1_23ta6"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ch7opmftlw7ab" path="res://ArtAssets/Gear5Center.png" id="3_5none"]
 [ext_resource type="Script" uid="uid://bbj16j63n61ky" path="res://Scripts/StartMenu_GearText.gd" id="4_vgvn6"]
 [ext_resource type="AudioStream" uid="uid://b7u7ygayctg1f" path="res://Music/MainMenu.mp3" id="6_wom42"]
+[ext_resource type="AudioStream" uid="uid://1j3lgn0exnqd" path="res://SoundEffects/Loop Mechanic-Menu Gear 1.mp3" id="7_86ygf"]
+[ext_resource type="AudioStream" uid="uid://di8sfk3qheop" path="res://SoundEffects/Loop Mechanic-Menu Gear 2.mp3" id="8_346e6"]
+[ext_resource type="AudioStream" uid="uid://dqi62a6fm6a3y" path="res://SoundEffects/Loop Mechanic-Menu Click.mp3" id="9_tfsc1"]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_23ta6")
@@ -67,3 +70,15 @@ script = ExtResource("4_vgvn6")
 stream = ExtResource("6_wom42")
 autoplay = true
 parameters/looping = true
+
+[node name="SoundEffectRotate1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_86ygf")
+volume_db = -5.0
+
+[node name="SoundEffectRotate2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_346e6")
+volume_db = -5.0
+
+[node name="SoundEffectClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_tfsc1")
+volume_db = 10.0

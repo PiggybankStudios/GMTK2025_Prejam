@@ -1,10 +1,12 @@
-[gd_scene load_steps=37 format=3 uid="uid://oc13h3au02ro"]
+[gd_scene load_steps=39 format=3 uid="uid://oc13h3au02ro"]
 
 [ext_resource type="Script" uid="uid://cyjy5s6osg87f" path="res://GregFPSStuff/Player/player_character.gd" id="1_h0t42"]
 [ext_resource type="Script" uid="uid://b1hhhhofwth7m" path="res://GregFPSStuff/Player/HUD.gd" id="2_f8cny"]
 [ext_resource type="Texture2D" uid="uid://uidicgaojgdi" path="res://GregFPSStuff/Art/HUD ASSETS/crosshair046.png" id="3_cuuh3"]
 [ext_resource type="Texture2D" uid="uid://bjh5ic6qy4jtl" path="res://GregFPSStuff/Art/HUD ASSETS/crosshair001.png" id="3_r36i1"]
 [ext_resource type="Script" uid="uid://dlb3pfwp32c3i" path="res://GregFPSStuff/Player/CameraMousePointing.gd" id="5_5nxd4"]
+[ext_resource type="AudioStream" uid="uid://cv3xofetl43wd" path="res://SoundEffects/Loop Mechanic Footstep 1.mp3" id="6_tdux8"]
+[ext_resource type="AudioStream" uid="uid://vlooo6qd2udr" path="res://SoundEffects/Loop Mechanic Footstep 2.mp3" id="7_3w8jb"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_rj3p7"]
 
@@ -721,6 +723,16 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Coyote_Timer" type="Timer" parent="."]
+
+[node name="FootLeft" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tdux8")
+volume_db = -5.0
+pitch_scale = 0.75
+
+[node name="FootRight" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3w8jb")
+volume_db = -5.0
+pitch_scale = 0.75
 
 [connection signal="timeout" from="CanvasLayer/Hit_Sight/Hit_Sight_Timer" to="CanvasLayer" method="_on_hit_sight_timer_timeout"]
 [connection signal="timeout" from="Sprint_Timer" to="." method="_on_sprint_timer_timeout"]

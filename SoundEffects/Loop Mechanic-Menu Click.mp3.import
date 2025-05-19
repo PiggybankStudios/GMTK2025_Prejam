@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dqi62a6fm6a3y"
+path="res://.godot/imported/Loop Mechanic-Menu Click.mp3-df66cca30b7510d41cf6c69a2bc9a87f.mp3str"
+
+[deps]
+
+source_file="res://SoundEffects/Loop Mechanic-Menu Click.mp3"
+dest_files=["res://.godot/imported/Loop Mechanic-Menu Click.mp3-df66cca30b7510d41cf6c69a2bc9a87f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -69,6 +69,12 @@ var SpeedAccel: float = 0.5
 var Speed: float = 4
 var Jump_Available: bool = true
 var Jump_Buffer: bool = false
+var playFootstepTimeMax = 0.5
+var playFootstepTime = 0
+var playFootstepLeft = false
+var SndFootL : AudioStreamPlayer
+var SndFootR : AudioStreamPlayer
+
 
 var Applied_Force : Vector3 = Vector3.ZERO
 
@@ -76,6 +82,8 @@ func _ready():
 	Update_CameraRotation()
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Calculate_Movement_Parameters()
+	SndFootL = get_node("FootLeft")
+	SndFootR = get_node("FootRight")
 	
 func Update_CameraRotation():
 	var current_rotation = get_rotation()
@@ -255,6 +263,16 @@ func _physics_process(delta):
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	updateSpeed(input_dir)
+	if (input_dir != Vector2(0,0)):
+		playFootstepTime -= delta
+		if playFootstepTime < 0 :
+			playFootstepTime = playFootstepTimeMax / Speed_Modifier
+			if playFootstepLeft :
+				playFootstepLeft = false
+				SndFootL.play()
+			else :
+				playFootstepLeft = true
+				SndFootR.play()
 	
 	#velocity.x = move_toward(velocity.x, direction.x * _speed, Speed)
 	#velocity.z = move_toward(velocity.z, direction.z * _speed, Speed)
