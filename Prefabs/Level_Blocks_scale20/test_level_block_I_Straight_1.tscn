@@ -19,4 +19,4 @@ mesh = ExtResource("2_l8fip")
 shape = SubResource("ConcavePolygonShape3D_l8fip")
 
 [node name="PlayerSpawnPosition" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00441, 1, -0.027124)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, 0)

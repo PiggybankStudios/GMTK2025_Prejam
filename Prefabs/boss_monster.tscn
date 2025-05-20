@@ -1,24 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbmw413k1birx"]
+[gd_scene load_steps=9 format=3 uid="uid://u3cortpgcmex"]
 
 [ext_resource type="Script" uid="uid://c8utaxs5eqlf0" path="res://Scripts_Sean/boss_monster.gd" id="1_trb47"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_trb47"]
+
 [sub_resource type="SphereMesh" id="SphereMesh_gxrnd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trb47"]
+albedo_color = Color(0.42, 0.34384, 0.1344, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_sbl5q"]
 
-[node name="boss_monster" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gxrnd"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_43g6b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtukl"]
+albedo_color = Color(0.579254, 1.97336e-06, 3.85046e-07, 1)
+
+[node name="boss_monster" type="RigidBody3D"]
 script = ExtResource("1_trb47")
+body_scale = 10.0
+max_speed = 10.0
+max_acceleration = 0.5
 
-[node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_trb47")
+
+[node name="Body" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("SphereMesh_gxrnd")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_trb47")
 
-[node name="Eye" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -9, 9, 22)
+[node name="Eye_Right" type="MeshInstance3D" parent="CollisionShape3D/Body"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.2, 0.1, 0.45)
 mesh = SubResource("SphereMesh_sbl5q")
-skeleton = NodePath("../Body")
+surface_material_override/0 = SubResource("StandardMaterial3D_gxrnd")
 
-[node name="Eye2" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9, 9, 22)
+[node name="Pupil_Right" type="MeshInstance3D" parent="CollisionShape3D/Body/Eye_Right"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0.4)
+mesh = SubResource("SphereMesh_43g6b")
+surface_material_override/0 = SubResource("StandardMaterial3D_jtukl")
+
+[node name="Eye_Left" type="MeshInstance3D" parent="CollisionShape3D/Body"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.2, 0.1, 0.45)
 mesh = SubResource("SphereMesh_sbl5q")
-skeleton = NodePath("../Body")
+surface_material_override/0 = SubResource("StandardMaterial3D_gxrnd")
+
+[node name="Pupil_Left" type="MeshInstance3D" parent="CollisionShape3D/Body/Eye_Left"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0.4)
+mesh = SubResource("SphereMesh_43g6b")
+surface_material_override/0 = SubResource("StandardMaterial3D_jtukl")

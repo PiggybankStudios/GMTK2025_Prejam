@@ -15,9 +15,8 @@ var pauseMenu = "/root/Menu"
 
 
 func _ready() -> void:
-#{
-	levelManager.create_level(playerCharacter)
-	levelManager.draw_grid()
+	levelManager.create_level(playerCharacter, bossMonster)
+	#levelManager.draw_grid()
 	pass
 #}
 func _process(_delta) -> void:

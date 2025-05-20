@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://b3rx3pbjad1dv"]
 
 [ext_resource type="Script" uid="uid://cuixftv7hii4i" path="res://Scripts_Sean/space_main.gd" id="1_46eog"]
-[ext_resource type="PackedScene" uid="uid://bnq6lnsdoxdak" path="res://Prefabs/prefab_SphereBlob.tscn" id="1_h1ge5"]
 [ext_resource type="PackedScene" uid="uid://oc13h3au02ro" path="res://GregFPSStuff/Player/player_character.tscn" id="2_11m3c"]
 [ext_resource type="PackedScene" uid="uid://brw7m1tqxsoje" path="res://Prefabs/level_manager.tscn" id="2_vuo64"]
+[ext_resource type="PackedScene" uid="uid://u3cortpgcmex" path="res://Prefabs/boss_monster.tscn" id="3_apc7g"]
 [ext_resource type="Image" uid="uid://l118glcsjb0q" path="res://MapImages/map_demo_1.png" id="3_v2epd"]
 [ext_resource type="Image" uid="uid://dl4nhem1vhhb0" path="res://MapImages/map_demo_2.png" id="4_4npdx"]
 [ext_resource type="Image" uid="uid://kgj8dixer63m" path="res://MapImages/map_demo_3.png" id="5_rd61s"]
@@ -16,19 +16,13 @@
 [ext_resource type="PackedScene" uid="uid://6vx4cmfc12dg" path="res://Prefabs/Level_Blocks_scale20/test_level_block_L_Tunnel_1.tscn" id="12_726gm"]
 [ext_resource type="AudioStream" uid="uid://c2dbgd02ad52r" path="res://Music/MainGame.mp3" id="15_apc7g"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_vuo64"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k0xya"]
-albedo_color = Color(0.303233, 0.303233, 0.303233, 1)
-
 [node name="MainScene_Root" type="Node3D"]
 script = ExtResource("1_46eog")
 playerCharacter = ExtResource("2_11m3c")
+bossMonster = ExtResource("3_apc7g")
 
 [node name="level_manager" parent="." instance=ExtResource("2_vuo64")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0161924, 0.197971, 0.12809)
 grid_count = 12
-grid_scale = 20
 map_image_paths = Array[Image]([ExtResource("3_v2epd"), ExtResource("4_4npdx"), ExtResource("5_rd61s")])
 block_list_straight = Array[PackedScene]([ExtResource("7_11m3c"), ExtResource("9_07pn6"), ExtResource("8_07pn6"), ExtResource("10_4u2au")])
 block_list_corner = Array[PackedScene]([ExtResource("8_lv2ab"), ExtResource("12_726gm")])
