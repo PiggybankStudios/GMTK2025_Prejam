@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://dniyrkkdwf3cb"]
+[gd_scene load_steps=19 format=3 uid="uid://dniyrkkdwf3cb"]
 
 [ext_resource type="PackedScene" uid="uid://bwc28g513sfim" path="res://GregFPSStuff/Objects/World/box_1.tscn" id="2_a2qm0"]
 [ext_resource type="PackedScene" uid="uid://b2sdeih184tnr" path="res://GregFPSStuff/Enemies/proj_turret_static.tscn" id="4_rdldg"]
 [ext_resource type="Script" uid="uid://r52rx7sts622" path="res://GregFPSStuff/Objects/World/bullet_holder.gd" id="5_uomjj"]
 [ext_resource type="PackedScene" uid="uid://o8mxghs5c3ed" path="res://GregFPSStuff/Enemies/Spawnable Objects/enemy_bullet.tscn" id="6_owp20"]
-[ext_resource type="Script" uid="uid://bi7qu6saq4ac2" path="res://GregFPSStuff/Objects/World/computer_controller.gd" id="7_5v27y"]
+[ext_resource type="PackedScene" uid="uid://d1vh7u8a0kyko" path="res://computer_terminal.tscn" id="7_p4x04"]
 [ext_resource type="Environment" uid="uid://bqp54syxqnqww" path="res://GregFPSStuff/Objects/World/world_environment.tres" id="7_tfq4t"]
-[ext_resource type="PackedScene" uid="uid://c5mla738g34kp" path="res://pressure_plate.tscn" id="7_u86h7"]
+[ext_resource type="PackedScene" path="res://pressure_plate.tscn" id="7_u86h7"]
+[ext_resource type="Script" uid="uid://4mrtxe26aqf1" path="res://GregFPSStuff/Objects/World/aoe_tower.gd" id="8_p4x04"]
 [ext_resource type="PackedScene" uid="uid://oc13h3au02ro" path="res://GregFPSStuff/Player/player_character.tscn" id="10_nucft"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t62yf"]
@@ -18,9 +19,19 @@ uv1_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yv2ts"]
 uv1_triplanar = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_owp20"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_idhaj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_p4x04"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p4x04"]
+transparency = 1
+albedo_color = Color(1, 0.239216, 0, 0.584314)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p4x04"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5v27y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p4x04"]
 
 [node name="World" type="Node3D"]
 
@@ -183,24 +194,46 @@ script = ExtResource("5_uomjj")
 Projectile_Velocity = 2.0
 Rigid_Body_Projectile = ExtResource("6_owp20")
 
-[node name="Computer" type="Area3D" parent="." node_paths=PackedStringArray("player")]
+[node name="Tower" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78513, 1.88244, 3.12164)
+
+[node name="AoETower" type="Area3D" parent="Tower"]
 collision_mask = 2
-script = ExtResource("7_5v27y")
-player = NodePath("../Player_Character")
+script = ExtResource("8_p4x04")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Computer"]
-shape = SubResource("BoxShape3D_owp20")
+[node name="Sphere" type="CollisionShape3D" parent="Tower/AoETower"]
+transform = Transform3D(7.495, 0, 0, 0, 7.495, 0, 0, 0, 7.495, 0, 0, 0)
+shape = SubResource("SphereShape3D_idhaj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Computer/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tower/AoETower/Sphere"]
+mesh = SubResource("SphereMesh_p4x04")
+surface_material_override/0 = SubResource("StandardMaterial3D_p4x04")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tower"]
 transform = Transform3D(0.47333, 0, 0, 0, 1, 0, 0, 0, 0.52352, 0, 0, 0)
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_p4x04")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tower/StaticBody3D"]
 mesh = SubResource("BoxMesh_5v27y")
+skeleton = NodePath("../../AoETower/Sphere")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tower"]
+shape = SubResource("BoxShape3D_p4x04")
+
+[node name="Computer" parent="." instance=ExtResource("7_p4x04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78513, 1.88244, 3.12164)
 
 [node name="PressurePlate" parent="." instance=ExtResource("7_u86h7")]
 transform = Transform3D(2.58, 0, 0, 0, 2.58, 0, 0, 0, 2.58, 8.36875, 2.41655, 3.8744)
 collision_mask = 2
 
-[connection signal="body_entered" from="Computer" to="Computer" method="_on_body_entered"]
-[connection signal="body_exited" from="Computer" to="Computer" method="_on_body_exited"]
+[connection signal="body_entered" from="Tower/AoETower" to="Tower/AoETower" method="_on_body_entered"]
+[connection signal="body_exited" from="Tower/AoETower" to="Tower/AoETower" method="_on_body_exited"]
 
 [editable path="proj_turret_static"]
