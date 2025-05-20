@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b3rx3pbjad1dv"]
+[gd_scene load_steps=15 format=3 uid="uid://b3rx3pbjad1dv"]
 
 [ext_resource type="Script" uid="uid://cuixftv7hii4i" path="res://Scripts_Sean/space_main.gd" id="1_46eog"]
 [ext_resource type="PackedScene" uid="uid://oc13h3au02ro" path="res://GregFPSStuff/Player/player_character.tscn" id="2_11m3c"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://byna6odirxa1l" path="res://Prefabs/Level_Blocks_scale20/test_level_block_I_Straight_1.tscn" id="9_07pn6"]
 [ext_resource type="PackedScene" uid="uid://dkefppjl7juh5" path="res://Prefabs/Level_Blocks_scale20/test_level_block_I_Curvey_2.tscn" id="10_4u2au"]
 [ext_resource type="PackedScene" uid="uid://6vx4cmfc12dg" path="res://Prefabs/Level_Blocks_scale20/test_level_block_L_Tunnel_1.tscn" id="12_726gm"]
-[ext_resource type="AudioStream" uid="uid://c2dbgd02ad52r" path="res://Music/MainGame.mp3" id="15_apc7g"]
 
 [node name="MainScene_Root" type="Node3D"]
 script = ExtResource("1_46eog")
@@ -31,21 +30,3 @@ block_list_corner = Array[PackedScene]([ExtResource("8_lv2ab"), ExtResource("12_
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 0)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.707107, 0.454519, -0.541675, 0, 0.766044, 0.642788, 0.707107, 0.454519, -0.541675, 0, 60, 0)
-size = 80.0
-
-[node name="TestBlob" parent="." instance=ExtResource("1_h1ge5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.942529, 0)
-visible = false
-
-[node name="TestFloor" type="MeshInstance3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
-visible = false
-mesh = SubResource("PlaneMesh_vuo64")
-surface_material_override/0 = SubResource("StandardMaterial3D_k0xya")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("15_apc7g")
-autoplay = true
