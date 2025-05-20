@@ -6,18 +6,28 @@
 
 extends Node
 
-## -- GRID ---
+# ---- Boss Monster ----
+var boss_monster_instance
+var boss_monster_spawn_grid_position = Vector2.ZERO
 
-## The number of grid spaces in both X and Y axis.
+# ---- Player ----
+var player_spawn_position = Vector3.ZERO
+const PLAYER_SPAWN_HEIGHT = 10
+
+# ---- GRID ----
+## The number of grid spaces in both X and Z axis.
 @export var grid_count := 6
+## The size of each block in both X and Z axis -- Determined by scale in BLENDER, needs to be consistent!
+@export var level_block_size := 10
+## The scale of each block in the scene
+@export var level_block_scale := 1.0
 
 ## The size of each grid space.
-@export var grid_scale := 6
-@onready var grid_scale_half = grid_scale / 2.0
+@onready var grid_scale = 2 * level_block_size * level_block_scale
+@onready var grid_scale_half = grid_scale / 2.0 	## setting as @onready allows 'grid_scale' to update before this is set.
 
 
-## --- BLOCK DATA ---
-
+# ---- BLOCK DATA ----
 ## The list of paths that levels will be generated from. A single red pixel is the starting position.
 @export var map_image_paths : Array[Image]
 
@@ -25,14 +35,6 @@ extends Node
 ## All block details are kept in separate arrays and tracked by index.
 @export var block_list_straight : Array[PackedScene]
 @export var block_list_corner : Array[PackedScene]
-
-
-enum BlockType {
-	TUNNEL,
-	CORNER,
-	INTERSECTION
-}
-var block_type := BlockType
 
 enum SpaceType {
 	BLACK = 1,
@@ -42,12 +44,10 @@ enum SpaceType {
 }
 var space_type := SpaceType
 
-var player_spawn_position = Vector3.ZERO
-const PLAYER_SPAWN_HEIGHT = 10
+var total_blocks_in_generated_level = 0
 
 
-## --- RNG ---
-
+# ---- RNG ----
 var rng = RandomNumberGenerator.new()
 
 
@@ -56,32 +56,32 @@ var rng = RandomNumberGenerator.new()
 ##              Level Generation               |
 ##----------------------------------------------
 
+## Gets the total spaces in this grid.
+func get_total_grid_spaces():
+	return grid_count * grid_count
+
+
 ## Creates the level by placing blocks in a loop on a grid, and instatiates the Player Character at that level's spawn point.
-func create_level(player: PackedScene) -> void:
-	
+func create_level(player: PackedScene, bossMonster: PackedScene) -> void:	
 	if block_list_straight.size() < 1 or block_list_corner.size() < 1:
 		push_error("Level_Manager's block_list_straight or block_list_corner is empty - cannot generate level.")
 	else:
 		var map_index = randi_range(0, map_image_paths.size()-1)
 		print("Map Selected: ", map_index)
-		generate_blocks_from_map_image(map_index)
+				
+		generate_blocks_from_map_image(map_index)	
 		spawn_player_character(player)
+		spawn_boss_monster(bossMonster)
+		set_boss_monster_navigation_loop(map_index)
+		#boss_monster_instance.draw_grid_path()
+		boss_monster_instance.set_move_state(true)
 	pass
-
-
-## Returns the center position of the cell from the passed index.
-func get_cell_center_from_grid_index(index: int):
-	var x_position = grid_scale_half + (grid_scale * (index % grid_count))
-	var z_position = grid_scale_half + (grid_scale * ((index / grid_count) % grid_count))
-	##print("--------------")
-	##print(str("grid position: ", index, " - grid_scale_half: ", grid_scale_half, " - x: ", x_position, " - z: ", z_position))
-	return Vector3(x_position, 0, z_position)
 
 
 ## Finds the Red Pixel (Score = 2) in the map image to start generating the level from.
 ## PIXEL SCORING: Black = 1, Red = 2, Yellow = 3, White = 4
 func generate_blocks_from_map_image(index: int):
-	
+	# Guards	
 	if map_image_paths.size() < 1:
 		push_error("Trying to generate level when no map image paths are in level_manager.")
 		return
@@ -90,8 +90,11 @@ func generate_blocks_from_map_image(index: int):
 		push_error("Trying to access a map image from outside the list range.")
 		return
 	
+	# Preset level data
+	total_blocks_in_generated_level = 0
 	var map = map_image_paths[index]
 	
+	# Loop over map image and generate each block
 	for j in grid_count:
 		for i in grid_count:
 			var pixel_value = map.get_pixel(i,j)
@@ -101,15 +104,17 @@ func generate_blocks_from_map_image(index: int):
 	pass
 
 
+## Generates a single level block based on this block's neighbors. Looks through every pixel in the passed map image.
+## Also sets spawn positions for the Player and Boss Monster.
 func generate_block(grid_x: int, grid_z: int, space: int, map_index: int):
 	var ignore = 0
+	
+	# Generate scenery
 	if space == SpaceType.BLACK:
 		ignore = 0 ## generate scenery here
-		
-	elif space == SpaceType.YELLOW:
-		ignore = 0 ## send position to boss script for when it sets up
-		
-	elif space == SpaceType.WHITE or space == SpaceType.RED:
+	
+	# Generate the level and spawn information
+	elif space == SpaceType.WHITE or space == SpaceType.RED or space == SpaceType.YELLOW:
 		var neighbors = get_level_block_neighbors(grid_x, grid_z, map_index)
 		var new_block
 		var block_id
@@ -119,28 +124,28 @@ func generate_block(grid_x: int, grid_z: int, space: int, map_index: int):
 			block_id = randi_range(0, block_list_corner.size()-1)
 			new_block = block_list_corner[block_id].instantiate()
 			new_block.name = "BLOCK_CORNER"
-			new_block.rotate_y(deg_to_rad(270))
+			new_block.rotate_y(deg_to_rad(180))
 		
 		## Left-Down: corner 2
 		elif neighbors[1] > 1 and neighbors[2] > 1:
 			block_id = randi_range(0, block_list_corner.size()-1)
 			new_block = block_list_corner[block_id].instantiate()
 			new_block.name = "BLOCK_CORNER"
-			new_block.rotate_y(deg_to_rad(180))
+			new_block.rotate_y(deg_to_rad(270))
 		
 		## Down-Right: corner 3
 		elif neighbors[2] > 1 and neighbors[3] > 1:
 			block_id = randi_range(0, block_list_corner.size()-1)
 			new_block = block_list_corner[block_id].instantiate()
 			new_block.name = "BLOCK_CORNER"
-			new_block.rotate_y(deg_to_rad(90))
+			# No rotation needed
 			
 		## Right-Up: corner 4
 		elif neighbors[3] > 1 and neighbors[0] > 1:
 			block_id = randi_range(0, block_list_corner.size()-1)
 			new_block = block_list_corner[block_id].instantiate()
 			new_block.name = "BLOCK_CORNER"
-			# No rotation needed
+			new_block.rotate_y(deg_to_rad(90))
 			
 		## Up-Down: straight 1
 		elif neighbors[0] > 1 and neighbors[2] > 1:
@@ -156,21 +161,87 @@ func generate_block(grid_x: int, grid_z: int, space: int, map_index: int):
 			new_block.name = "BLOCK_STRAIGHT"
 			new_block.rotate_y(deg_to_rad(90))
 
-		## Finish this block's details
+		## -- Finish this block's details --
 		if new_block != null:
+			## Block Details
 			var x_position = (grid_x * grid_scale) + grid_scale_half
 			var z_position = (grid_z * grid_scale) + grid_scale_half
 			new_block.position = Vector3(x_position, 0,z_position)
+			new_block.scale *= level_block_scale
 			add_child(new_block)
+			total_blocks_in_generated_level += 1
 			
+			## Player Details
 			if space == SpaceType.RED:
 				player_spawn_position = new_block.get_player_spawn_position()
-				##print("player spawn position: ", player_spawn_position)
-				##player_spawn_position = new_block.level_block.get_player_spawn_position()				
-				##player_spawn_position = Vector3(x_position, PLAYER_SPAWN_HEIGHT, z_position)
-				
+			
+			## Monster Details
+			elif space == SpaceType.YELLOW:
+				boss_monster_spawn_grid_position = Vector2(grid_x, grid_z)
+			
 	else:
-		push_error(str("Pixel not recognized in map image: ", map_index, " - pixel score: ", space, " - position: ", grid_x, ", ", grid_z))
+		push_error("Pixel not recognized in map image: ", map_index, " - pixel score: ", space, " - position: ", grid_x, ", ", grid_z)
+	pass
+
+
+## Creates a navigation path in the passed map for the Boss Monster. 
+## Starting at the Boss Monster spawn position, only looks through neighbors along the path.
+func set_boss_monster_navigation_loop(map_index: int):
+	## variable declarations
+	var added_grid_positions: Array[Vector2] = []
+	var cell = Vector2(boss_monster_spawn_grid_position.x, boss_monster_spawn_grid_position.y)
+	var block_counter = 1
+	var neighbors
+	var cell_check
+	
+	## start as known player start position - will always be on the path
+	boss_monster_instance.clear_grid_path()
+	var player_spawn_cell = Vector3((cell.x * grid_scale) + grid_scale_half, 0, (cell.y * grid_scale) + grid_scale_half)
+	boss_monster_instance.add_block_to_grid_path(player_spawn_cell)
+	
+	## local function to add a new path point
+	var check_neighbor = func is_neighbor_valid_and_added(direction, x, z):
+		var grid_position = Vector2(x, z)
+		#print("CHECKING - direction: ", direction, " - position: ", grid_position, " - added: ", added_grid_positions.find(grid_position))
+		if direction > 1 and added_grid_positions.find(grid_position) == -1:
+			added_grid_positions.append(grid_position)
+			var pos_x = (x * grid_scale) + grid_scale_half
+			var pos_z = (z * grid_scale) + grid_scale_half
+			boss_monster_instance.add_block_to_grid_path(Vector3(pos_x, 0, pos_z))
+			#print(	"grid: ", grid_position, " - position: ", Vector3(pos_x, 0, pos_z), " - grid index: ", boss_monster_instance.get_path_size()-1)
+			return Vector2(x, z)	
+		return Vector2(-1, -1)
+	
+	## begin while loop - once player start position is found as a neighbor, we're done
+	while block_counter < total_blocks_in_generated_level:
+		neighbors = get_level_block_neighbors(cell.x, cell.y, map_index)
+		block_counter += 1
+		#print("---------------------------")
+		#print(" --- Block Counter: ", block_counter, " - Total Blocks: ", total_blocks_in_generated_level, " - cell: ", cell)
+		# UP
+		cell_check = check_neighbor.call(neighbors[0], cell.x, cell.y-1)
+		if cell_check != Vector2(-1, -1):
+			cell = cell_check
+			continue	
+		# LEFT
+		cell_check = check_neighbor.call(neighbors[1], cell.x-1, cell.y)
+		if cell_check != Vector2(-1, -1):
+			cell = cell_check
+			continue	
+		# DOWN
+		cell_check = check_neighbor.call(neighbors[2], cell.x, cell.y+1)
+		if cell_check != Vector2(-1, -1):
+			cell = cell_check
+			continue	
+		# RIGHT
+		cell_check = check_neighbor.call(neighbors[3], cell.x+1, cell.y)
+		if cell_check != Vector2(-1, -1):
+			cell = cell_check
+			continue
+
+		print("No valid neighbors for this block: ", block_counter, " - boss monster path finding aborted.")
+		return
+	
 	pass
 
 
@@ -178,15 +249,32 @@ func generate_block(grid_x: int, grid_z: int, space: int, map_index: int):
 ## TO DO: need to stop the pixel check if out of image bounds
 func get_level_block_neighbors(grid_x: int, grid_z: int, map_index: int):
 	var map = map_image_paths[map_index]
-	var up = get_pixel_score( map.get_pixel(grid_x, grid_z+1) )
+	var up = get_pixel_score( map.get_pixel(grid_x, grid_z-1) )
 	var left = get_pixel_score( map.get_pixel(grid_x-1, grid_z) )
-	var down = get_pixel_score( map.get_pixel(grid_x, grid_z-1) )
+	var down = get_pixel_score( map.get_pixel(grid_x, grid_z+1) )
 	var right = get_pixel_score( map.get_pixel(grid_x+1, grid_z) )
 	return Vector4(up, left, down, right)
 
 
+## Get the combined total of the passed color as a single value. This indicates the type of block
+## that this color represents.
 func get_pixel_score(pixel_value: Color):
 	return pixel_value[0] + pixel_value[1] + pixel_value[2] + pixel_value[3]
+
+
+
+##----------------------------------------------
+##                Grid Functions               |
+##----------------------------------------------
+
+## Returns the center position of the cell from the passed index.
+func get_cell_center_from_grid_index(index: int):
+	@warning_ignore("integer_division")
+	var z_position = grid_scale_half + (grid_scale * ((index / grid_count) % grid_count))
+	var x_position = grid_scale_half + (grid_scale * (index % grid_count))
+	##print("--------------")
+	##print(str("grid position: ", index, " - grid_scale_half: ", grid_scale_half, " - x: ", x_position, " - z: ", z_position))
+	return Vector3(x_position, 0, z_position)
 
 
 
@@ -194,12 +282,28 @@ func get_pixel_score(pixel_value: Color):
 ##               Asset Placement               |
 ##----------------------------------------------
 
-## Instantiates a player character controller 
+## Instantiates a player character controller into the scene
 func spawn_player_character(player: PackedScene):
 	var newPlayer = player.instantiate()
 	newPlayer.position = player_spawn_position
 	newPlayer.name = "Player_Character"
-	add_child(newPlayer)
+	self.owner.add_child(newPlayer) #sets player as child of the root node
+	pass
+
+
+## Instantiates a bossMonster into the scene
+func spawn_boss_monster(bossMonster: PackedScene):
+	## Boss Monster creation
+	boss_monster_instance = bossMonster.instantiate()
+	boss_monster_instance.set_move_state(false)
+	var spawn_x = (boss_monster_spawn_grid_position.x * grid_scale) + grid_scale_half
+	var spawn_z = (boss_monster_spawn_grid_position.y * grid_scale) + grid_scale_half
+	boss_monster_instance.position = Vector3(spawn_x, 0, spawn_z)
+	boss_monster_instance.name = "Boss_Monster"
+	self.owner.add_child(boss_monster_instance) # sets boss as child of the root node
+	
+	## Boss Monster data init
+	boss_monster_instance.initialize()
 	pass
 
 

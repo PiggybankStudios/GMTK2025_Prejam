@@ -15,5 +15,4 @@ func get_player_spawn_position():
 		
 	## Otherwise get the spawn position of the attached node.
 	else:
-		print(player_spawn_node.name)
 		return player_spawn_node.position + self.position

@@ -1,9 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://b3rx3pbjad1dv"]
+[gd_scene load_steps=15 format=3 uid="uid://cgnp3h1vmsadn"]
 
 [ext_resource type="Script" uid="uid://cuixftv7hii4i" path="res://Scripts_Sean/space_main.gd" id="1_46eog"]
-[ext_resource type="PackedScene" uid="uid://bnq6lnsdoxdak" path="res://Prefabs/prefab_SphereBlob.tscn" id="1_h1ge5"]
 [ext_resource type="PackedScene" uid="uid://oc13h3au02ro" path="res://GregFPSStuff/Player/player_character.tscn" id="2_11m3c"]
 [ext_resource type="PackedScene" uid="uid://brw7m1tqxsoje" path="res://Prefabs/level_manager.tscn" id="2_vuo64"]
+[ext_resource type="PackedScene" uid="uid://u3cortpgcmex" path="res://Prefabs/boss_monster.tscn" id="3_apc7g"]
 [ext_resource type="Image" uid="uid://l118glcsjb0q" path="res://MapImages/map_demo_1.png" id="3_v2epd"]
 [ext_resource type="Image" uid="uid://dl4nhem1vhhb0" path="res://MapImages/map_demo_2.png" id="4_4npdx"]
 [ext_resource type="Image" uid="uid://kgj8dixer63m" path="res://MapImages/map_demo_3.png" id="5_rd61s"]
@@ -15,19 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://dkefppjl7juh5" path="res://Prefabs/Level_Blocks_scale20/test_level_block_I_Curvey_2.tscn" id="10_4u2au"]
 [ext_resource type="PackedScene" uid="uid://6vx4cmfc12dg" path="res://Prefabs/Level_Blocks_scale20/test_level_block_L_Tunnel_1.tscn" id="12_726gm"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_vuo64"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k0xya"]
-albedo_color = Color(0.303233, 0.303233, 0.303233, 1)
-
 [node name="MainScene_Root" type="Node3D"]
 script = ExtResource("1_46eog")
 playerCharacter = ExtResource("2_11m3c")
+bossMonster = ExtResource("3_apc7g")
 
 [node name="level_manager" parent="." instance=ExtResource("2_vuo64")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0161924, 0.197971, 0.12809)
 grid_count = 12
-grid_scale = 20
 map_image_paths = Array[Image]([ExtResource("3_v2epd"), ExtResource("4_4npdx"), ExtResource("5_rd61s")])
 block_list_straight = Array[PackedScene]([ExtResource("7_11m3c"), ExtResource("9_07pn6"), ExtResource("8_07pn6"), ExtResource("10_4u2au")])
 block_list_corner = Array[PackedScene]([ExtResource("8_lv2ab"), ExtResource("12_726gm")])
@@ -36,17 +30,3 @@ block_list_corner = Array[PackedScene]([ExtResource("8_lv2ab"), ExtResource("12_
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 0)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.707107, 0.454519, -0.541675, 0, 0.766044, 0.642788, 0.707107, 0.454519, -0.541675, 0, 60, 0)
-size = 80.0
-
-[node name="TestBlob" parent="." instance=ExtResource("1_h1ge5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.942529, 0)
-visible = false
-
-[node name="TestFloor" type="MeshInstance3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
-visible = false
-mesh = SubResource("PlaneMesh_vuo64")
-surface_material_override/0 = SubResource("StandardMaterial3D_k0xya")

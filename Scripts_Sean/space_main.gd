@@ -13,9 +13,8 @@ extends Node3D
 
 
 func _ready() -> void:
-	
-	levelManager.create_level(playerCharacter)
-	levelManager.draw_grid()
+	levelManager.create_level(playerCharacter, bossMonster)
+	#levelManager.draw_grid()
 	pass
 	
 	
