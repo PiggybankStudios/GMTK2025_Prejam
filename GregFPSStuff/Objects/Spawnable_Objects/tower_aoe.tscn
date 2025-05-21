@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://dkrwc34mwuuxi"]
+
+[ext_resource type="Script" uid="uid://4mrtxe26aqf1" path="res://GregFPSStuff/Objects/World/aoe_tower.gd" id="1_1pdof"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_idhaj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_p4x04"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p4x04"]
+transparency = 1
+albedo_color = Color(1, 0.239216, 0, 0.584314)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p4x04"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p4x04"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5v27y"]
+
+[node name="TowerAoE" type="Node3D"]
+
+[node name="AoETower" type="Area3D" parent="." node_paths=PackedStringArray("damage_collider", "sphere_mesh", "active_timer", "deactive_timer", "damage_timer")]
+collision_mask = 2
+script = ExtResource("1_1pdof")
+damage_collider = NodePath("Sphere")
+sphere_mesh = NodePath("Sphere/MeshInstance3D")
+active_timer = NodePath("Node/CountdownToActive")
+deactive_timer = NodePath("Node/CountdownToInactive")
+damage_timer = NodePath("Node/CountdownToDamage")
+
+[node name="Sphere" type="CollisionShape3D" parent="AoETower"]
+transform = Transform3D(7.495, 0, 0, 0, 7.495, 0, 0, 0, 7.495, 0, 0, 0)
+shape = SubResource("SphereShape3D_idhaj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AoETower/Sphere"]
+mesh = SubResource("SphereMesh_p4x04")
+surface_material_override/0 = SubResource("StandardMaterial3D_p4x04")
+
+[node name="Node" type="Node" parent="AoETower"]
+
+[node name="CountdownToActive" type="Timer" parent="AoETower/Node"]
+wait_time = 0.5
+autostart = true
+
+[node name="CountdownToInactive" type="Timer" parent="AoETower/Node"]
+wait_time = 0.2
+
+[node name="CountdownToDamage" type="Timer" parent="AoETower/Node"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.47333, 0, 0, 0, 1, 0, 0, 0, 0.52352, 0, 0, 0)
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_p4x04")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1.0543, 0, 0, 0, 1, 0, 0, 0, 1.06556, 0, 0, 0)
+shape = SubResource("BoxShape3D_p4x04")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_5v27y")
+skeleton = NodePath("../../AoETower/Sphere")
+
+[connection signal="body_entered" from="AoETower" to="AoETower" method="_on_body_entered"]
+[connection signal="body_exited" from="AoETower" to="AoETower" method="_on_body_exited"]
+[connection signal="timeout" from="AoETower/Node/CountdownToActive" to="AoETower" method="_on_active_timer_timeout"]
+[connection signal="timeout" from="AoETower/Node/CountdownToInactive" to="AoETower" method="_on_deactive_timer_timeout"]
+[connection signal="timeout" from="AoETower/Node/CountdownToDamage" to="AoETower" method="_on_damage_timeout"]
