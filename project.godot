@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Loop Mechanic"
-run/main_scene="uid://cgnp3h1vmsadn"
+run/main_scene="uid://djfrqc6et0q5v"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+<<<<<<<HEADrun/main_scene="uid://beql60mlyuv4k"
 
 [autoload]
 

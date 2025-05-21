@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bwc28g513sfim" path="res://GregFPSStuff/Objects/World/box_1.tscn" id="2_a2qm0"]
 [ext_resource type="PackedScene" uid="uid://b2sdeih184tnr" path="res://GregFPSStuff/Enemies/proj_turret_static.tscn" id="4_rdldg"]
-[ext_resource type="Script" uid="uid://r52rx7sts622" path="res://GregFPSStuff/Objects/World/bullet_holder.gd" id="5_uomjj"]
+[ext_resource type="Script" path="res://GregFPSStuff/Objects/World/bullet_holder.gd" id="5_uomjj"]
 [ext_resource type="PackedScene" uid="uid://o8mxghs5c3ed" path="res://GregFPSStuff/Enemies/Spawnable Objects/enemy_bullet.tscn" id="6_owp20"]
-[ext_resource type="PackedScene" uid="uid://d1vh7u8a0kyko" path="res://computer_terminal.tscn" id="7_p4x04"]
+[ext_resource type="PackedScene" path="res://computer_terminal.tscn" id="7_p4x04"]
 [ext_resource type="Environment" uid="uid://bqp54syxqnqww" path="res://GregFPSStuff/Objects/World/world_environment.tres" id="7_tfq4t"]
 [ext_resource type="PackedScene" path="res://pressure_plate.tscn" id="7_u86h7"]
-[ext_resource type="Script" uid="uid://4mrtxe26aqf1" path="res://GregFPSStuff/Objects/World/aoe_tower.gd" id="8_p4x04"]
+[ext_resource type="Script" path="res://GregFPSStuff/Objects/World/aoe_tower.gd" id="8_p4x04"]
 [ext_resource type="PackedScene" uid="uid://oc13h3au02ro" path="res://GregFPSStuff/Player/player_character.tscn" id="10_nucft"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t62yf"]
