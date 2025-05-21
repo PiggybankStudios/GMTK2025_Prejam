@@ -1,7 +1,10 @@
 extends CharacterBody3D
 
 @onready var Camera = get_node("%Camera")
+@onready var Placement_Holder= get_node("/root/World/%PlacementHolder")
+
 @export var animation_tree: AnimationTree
+@export var scene_to_spawn: PackedScene
 
 #const SPEED = 5.0
 var target_velocity = Vector3.ZERO
@@ -109,7 +112,17 @@ func _input(event):
 		if !Crouch_Toggle and Crouched:
 			Crouch()
 	
+	if event.is_action_pressed("Secondary_Fire"):
+		#place spawn object on the ground where the player is looking
+		# if is_on_floor():
+		var spawn_object = scene_to_spawn.instantiate()
+		spawn_object.position = get_global_transform().origin
+		Placement_Holder.add_child(spawn_object)
+		print("Placing object at " + str(spawn_object.position))
+			# spawn_object.position.y = get_global_transform().origin.y
 		
+		#get_parent().add_child(spawn_object)
+					
 	#if Input.is_action_just_released("lean_left") or Input.is_action_just_released("lean_right"):
 		#if !(Input.is_action_pressed("lean_right") or Input.is_action_pressed("lean_left")):
 			#lean(CENTRE)
@@ -222,6 +235,9 @@ func updateSpeed(moveVec):
 		SpeedCurrent = SpeedMax * Speed_Modifier
 	#print(Speed_Modifier, " : ", SpeedCurrent)
 
+func place_on_ground()->void:
+	velocity.y = 0
+
 func _physics_process(delta):
 	Sprint_Replenish(delta)
 	#lean_collision()
@@ -256,6 +272,8 @@ func _physics_process(delta):
 		else:
 			Jump_Buffer = true
 			get_tree().create_timer(Jump_Buffer_Time).timeout.connect(on_jump_buffer_timeout)
+
+
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

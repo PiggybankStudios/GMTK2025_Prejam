@@ -11,6 +11,10 @@ extends Area3D
 @export var deactive_timer: Timer
 @export var damage_timer: Timer
 
+@onready var Debug_aoe_tower = preload("res://GregFPSStuff/Objects/Spawnable_Objects/aoe_tower.tscn")
+@onready var Debug_turret = preload("res://GregFPSStuff/Objects/Spawnable_Objects/proj_turret_static.tscn")
+
+
 func _on_body_entered(body):
 	print("body entered")
 	isTargetInArea = true

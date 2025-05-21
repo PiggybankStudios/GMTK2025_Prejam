@@ -1,14 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxtdietyntadj"]
+[gd_scene load_steps=8 format=3 uid="uid://dxtdietyntadj"]
 
 [ext_resource type="Script" uid="uid://4mrtxe26aqf1" path="res://GregFPSStuff/Objects/World/aoe_tower.gd" id="1_wolqf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_idhaj"]
 resource_local_to_scene = true
-radius = 5.0
+radius = 2.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_p4x04"]
-radius = 5.0
-height = 10.0
+flip_faces = true
+radius = 2.0
+height = 2.0
+is_hemisphere = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p4x04"]
 transparency = 1
@@ -17,27 +19,30 @@ albedo_color = Color(1, 0.239216, 0, 0.584314)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p4x04"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p4x04"]
+size = Vector3(0.587524, 1, 0.687134)
 
-[node name="AoETower" type="Area3D" node_paths=PackedStringArray("main_target", "damage_collider", "sphere_mesh", "active_timer", "deactive_timer", "damage_timer")]
+[sub_resource type="BoxMesh" id="BoxMesh_wolqf"]
+size = Vector3(0.65, 1, 0.645)
+
+[node name="AoETower" type="Area3D" node_paths=PackedStringArray("damage_collider", "sphere_mesh", "active_timer", "deactive_timer", "damage_timer")]
 collision_mask = 34
 script = ExtResource("1_wolqf")
-main_target = NodePath("")
 isDamaging = true
-damage_collider = NodePath("Sphere")
-sphere_mesh = NodePath("MeshInstance3D2")
+damage_collider = NodePath("SphereCollider")
+sphere_mesh = NodePath("SphereCollider/SphereMesh")
 active_timer = NodePath("Node/CountdownToActive")
 deactive_timer = NodePath("Node/CountdownToInactive")
 damage_timer = NodePath("Node/CountdownToDamage")
 
-[node name="Sphere" type="CollisionShape3D" parent="."]
+[node name="SphereCollider" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_idhaj")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="SphereMesh" type="MeshInstance3D" parent="SphereCollider"]
 mesh = SubResource("SphereMesh_p4x04")
-skeleton = NodePath("../Sphere")
 surface_material_override/0 = SubResource("StandardMaterial3D_p4x04")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticTower" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 axis_lock_linear_x = true
 axis_lock_linear_y = true
 axis_lock_linear_z = true
@@ -46,8 +51,13 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_p4x04")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticTower"]
+process_mode = 4
 shape = SubResource("BoxShape3D_p4x04")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticTower"]
+mesh = SubResource("BoxMesh_wolqf")
+skeleton = NodePath("")
 
 [node name="Node" type="Node" parent="."]
 

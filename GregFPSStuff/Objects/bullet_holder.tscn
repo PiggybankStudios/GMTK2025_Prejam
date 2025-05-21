@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://baayftq28xxa2"]
+
+[ext_resource type="Script" uid="uid://r52rx7sts622" path="res://GregFPSStuff/Objects/World/bullet_holder.gd" id="1_ihmma"]
+[ext_resource type="PackedScene" uid="uid://o8mxghs5c3ed" path="res://GregFPSStuff/Enemies/Spawnable Objects/enemy_bullet.tscn" id="2_57nk5"]
+
+[node name="BulletHolder" type="Node3D"]
+script = ExtResource("1_ihmma")
+Projectile_Velocity = 2.0
+Rigid_Body_Projectile = ExtResource("2_57nk5")
