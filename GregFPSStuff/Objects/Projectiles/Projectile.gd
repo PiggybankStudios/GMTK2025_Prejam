@@ -106,7 +106,7 @@ func Load_Decal(_pos):
 
 #Launch RB Projectile with point from camera collision & projectile to load
 func Launch_Rigid_Body_Projectile(_Point, _projectile):
-	print("Launching Projectile " + str(Projectiles_Spawned.size()))
+	# print("Launching Projectile " + str(Projectiles_Spawned.size()))
 	var _proj = _projectile.instantiate()
 	add_child(_proj)
 	

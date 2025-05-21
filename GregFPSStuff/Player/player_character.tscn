@@ -562,6 +562,7 @@ radius = 0.45
 
 [node name="Player_Character" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree", "Crouch_Collision", "Sprint_Timer") groups=["Player"]]
 collision_layer = 2
+collision_mask = 33
 floor_max_angle = 0.872665
 script = ExtResource("1_h0t42")
 animation_tree = NodePath("AnimationTree")

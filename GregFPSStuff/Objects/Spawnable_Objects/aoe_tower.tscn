@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxtdietyntadj"]
+
+[ext_resource type="Script" uid="uid://4mrtxe26aqf1" path="res://GregFPSStuff/Objects/World/aoe_tower.gd" id="1_wolqf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_idhaj"]
+resource_local_to_scene = true
+radius = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_p4x04"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p4x04"]
+transparency = 1
+albedo_color = Color(1, 0.239216, 0, 0.584314)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p4x04"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p4x04"]
+
+[node name="AoETower" type="Area3D" node_paths=PackedStringArray("main_target", "damage_collider", "sphere_mesh", "active_timer", "deactive_timer", "damage_timer")]
+collision_mask = 34
+script = ExtResource("1_wolqf")
+main_target = NodePath("")
+isDamaging = true
+damage_collider = NodePath("Sphere")
+sphere_mesh = NodePath("MeshInstance3D2")
+active_timer = NodePath("Node/CountdownToActive")
+deactive_timer = NodePath("Node/CountdownToInactive")
+damage_timer = NodePath("Node/CountdownToDamage")
+
+[node name="Sphere" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_idhaj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_p4x04")
+skeleton = NodePath("../Sphere")
+surface_material_override/0 = SubResource("StandardMaterial3D_p4x04")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_p4x04")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_p4x04")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="CountdownToActive" type="Timer" parent="Node"]
+wait_time = 0.5
+autostart = true
+
+[node name="CountdownToInactive" type="Timer" parent="Node"]
+
+[node name="CountdownToDamage" type="Timer" parent="Node"]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Node/CountdownToActive" to="." method="_on_active_timer_timeout"]
+[connection signal="timeout" from="Node/CountdownToInactive" to="." method="_on_deactive_timer_timeout"]
+[connection signal="timeout" from="Node/CountdownToDamage" to="." method="_on_damage_timeout"]

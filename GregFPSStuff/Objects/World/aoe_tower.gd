@@ -11,13 +11,15 @@ extends Area3D
 @export var deactive_timer: Timer
 @export var damage_timer: Timer
 
-func _on_area_3d_body_entered(body):
-	if body == main_target:
-		isTargetInArea = true
+func _on_body_entered(body):
+	print("body entered")
+	isTargetInArea = true
+	# if body == main_target:
 
-func _on_area_3d_body_exited(body):
-	if body == main_target:
-		isTargetInArea = false
+func _on_body_exited(body):
+	print("body exited")
+	isTargetInArea = false
+	# if body == main_target:
 
 func _process(delta):
 	if isTargetInArea && isDamaging:

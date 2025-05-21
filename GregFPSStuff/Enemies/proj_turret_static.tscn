@@ -200,6 +200,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.755631)
 script = ExtResource("3_v47nc")
 projectile_to_load = ExtResource("4_e1mgd")
 bullet_to_load = ExtResource("5_x7sjw")
+damage = 0
 metadata/enemy_shooter = false
 
 [node name="AttackTimer" type="Timer" parent="Enemy_Attack_Holder"]

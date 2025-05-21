@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5mla738g34kp"]
+[gd_scene load_steps=4 format=3 uid="uid://bnmxgduthkgta"]
 
 [ext_resource type="Script" uid="uid://by6pe8ktjaae5" path="res://GregFPSStuff/Objects/World/PressurePlate.gd" id="1_uot4y"]
 
